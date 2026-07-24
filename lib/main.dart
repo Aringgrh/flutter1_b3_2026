@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter1_b3_2026/day_5/layouting.dart';
-import 'package:flutter1_b3_2026/day_5/scaffold.dart';
-import 'package:flutter1_b3_2026/day_5/styling.dart';
-import 'package:flutter1_b3_2026/tugas_1/tugas.dart';
+import 'package:flutter1_b3_2026/tugas_1/tugas_flutter_3.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,11 +13,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-       
-        colorScheme: .fromSeed(seedColor: Colors.deepPurple),
-      ),
-      home: Tugas1()
+      theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
+      home: Tugas3Flutter(),
     );
   }
 }

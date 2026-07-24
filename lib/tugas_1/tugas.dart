@@ -9,6 +9,7 @@ class Tugas1 extends StatelessWidget {
         backgroundColor: Colors.red,
         title: Text("Profil Saya"),
         centerTitle: true,),
+        
 
         body:Column(
           children: [ Align(alignment: AlignmentGeometry.topCenter,),
@@ -26,7 +27,10 @@ class Tugas1 extends StatelessWidget {
           Icon(Icons.location_on, ), 
           Text("Jakarta Timur, Indonesia")]),
           
-          Text("Mahasiswa Semester 2 Sistem Informasi UPNVJ")
+          Text("Mahasiswa Semester 2 Sistem Informasi UPNVJ",
+          style: TextStyle(
+            fontSize: 20
+          ),)
         ]
         ),
         
