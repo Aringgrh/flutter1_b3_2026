@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter1_b3_2026/tugas_1/tugas_flutter_3.dart';
+import 'package:flutter1_b3_2026/tugas_1/tugas_3_flutter.dart';
 
 void main() {
   runApp(const MyApp());
