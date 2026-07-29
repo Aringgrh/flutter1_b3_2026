@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter1_b3_2026/day_11/home.dart';
 
-class Tugas6Flutter extends StatelessWidget {
-  const Tugas6Flutter({super.key});
+class Coba6 extends StatefulWidget {
+  const Coba6({super.key});
 
+  @override
+  State<Coba6> createState() => _Coba6State();
+}
+
+bool sembunyikan = false;
+
+class _Coba6State extends State<Coba6> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,9 +87,17 @@ class Tugas6Flutter extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: TextField(
+                obscureText: sembunyikan,
                 decoration: InputDecoration(
                   hintText: "Masukkan Password",
-                  suffixIcon: Icon(Icons.visibility_off),
+                  suffixIcon: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        sembunyikan = !sembunyikan;
+                      });
+                    },
+                    icon: Icon(sembunyikan ? Icons.visibility_off : Icons.visibility),
+                  ),
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(30)),
                 ),
               ),
