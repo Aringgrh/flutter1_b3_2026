@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter1_b3_2026/tugas/tugas_5_flutter.dart';
+import 'package:flutter1_b3_2026/tugas/tugas_6_flutter.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,7 +14,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
-      home: Tugas5Flutter(),
+      // PUSH NAMED
+      initialRoute: "/",
+      // routes: {
+      //   "/": (context) => RoutingDay11(),
+      //   "/home": (context) => HomeDay11(),
+      // },
+      home: Tugas6Flutter(),
     );
   }
 }

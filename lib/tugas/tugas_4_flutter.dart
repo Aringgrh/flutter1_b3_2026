@@ -68,6 +68,8 @@ class Tugas4Flutter extends StatelessWidget {
             ),
           ),
           SizedBox(height: 20, width: 20),
+          Divider(),
+          SizedBox(height: 20),
           Text(
             "Riwayat laporan Terakhir",
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
