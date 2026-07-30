@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter1_b3_2026/day_11/home.dart';
 
-class Tugas6Flutter extends StatelessWidget {
+class Tugas6Flutter extends StatefulWidget {
   const Tugas6Flutter({super.key});
 
+  @override
+  State<Tugas6Flutter> createState() => _Tugas6FlutterState();
+}
+
+bool sembunyikan = false;
+
+class _Tugas6FlutterState extends State<Tugas6Flutter> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,7 +20,9 @@ class Tugas6Flutter extends StatelessWidget {
             Container(
               height: 186,
               width: double.infinity,
-              decoration: BoxDecoration(color: const Color.fromRGBO(217, 217, 217, 1)),
+              decoration: BoxDecoration(
+                color: const Color.fromRGBO(217, 217, 217, 1),
+              ),
               child: Center(
                 child: Text(
                   "PPKD",
@@ -32,7 +41,11 @@ class Tugas6Flutter extends StatelessWidget {
               alignment: AlignmentDirectional.topStart,
               child: Text(
                 "Login Account",
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, fontFamily: 'Arimo'),
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Arimo',
+                ),
               ),
             ),
             SizedBox(height: 20),
@@ -80,22 +93,42 @@ class Tugas6Flutter extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: TextField(
+                obscureText: sembunyikan,
                 decoration: InputDecoration(
                   hintText: "Masukkan Password",
-                  suffixIcon: Icon(Icons.visibility_off),
-                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(30)),
+                  suffixIcon: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        sembunyikan = !sembunyikan;
+                      });
+                    },
+                    icon: Icon(
+                      sembunyikan ? Icons.visibility_off : Icons.visibility,
+                    ),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
                 ),
               ),
             ),
             Container(
               alignment: AlignmentGeometry.bottomRight,
               padding: EdgeInsets.only(right: 20),
-              child: Text(
-                "Lupa Password?",
-                style: TextStyle(
-                  color: const Color.fromRGBO(234, 148, 89, 1),
-                  fontFamily: "Arimo",
-                  fontWeight: FontWeight.bold,
+              child: TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => HomeDay11()),
+                  );
+                },
+                child: Text(
+                  "Lupa Password?",
+                  style: TextStyle(
+                    color: const Color.fromRGBO(234, 148, 89, 1),
+                    fontFamily: "Arimo",
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ),
@@ -106,7 +139,9 @@ class Tugas6Flutter extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 20),
               child: ElevatedButton(
                 style: ButtonStyle(
-                  backgroundColor: WidgetStateProperty.all(const Color.fromRGBO(248, 98, 58, 1)),
+                  backgroundColor: WidgetStateProperty.all(
+                    const Color.fromRGBO(248, 98, 58, 1),
+                  ),
                 ),
                 onPressed: () {
                   Navigator.pushReplacement(
@@ -133,7 +168,14 @@ class Tugas6Flutter extends StatelessWidget {
                 children: [
                   Expanded(child: Divider()),
                   SizedBox(width: 10),
-                  Text("Or Sign In With"),
+                  Text(
+                    "Or Sign In With",
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontFamily: 'Arimo',
+                      color: const Color.fromRGBO(136, 136, 136, 1),
+                    ),
+                  ),
                   SizedBox(width: 10),
                   Expanded(child: Divider()),
                 ],
@@ -152,7 +194,10 @@ class Tugas6Flutter extends StatelessWidget {
                         borderRadius: BorderRadius.circular(30),
                         color: const Color.fromRGBO(217, 217, 217, 1),
                       ),
-                      child: iconLogin('assets/images/googleIcon.png', "Google"),
+                      child: iconLogin(
+                        'assets/images/googleIcon.png',
+                        "Google",
+                      ),
                     ),
                   ],
                 ),
@@ -180,14 +225,23 @@ class Tugas6Flutter extends StatelessWidget {
                 children: [
                   Text(
                     "Don't have an account?",
-                    style: TextStyle(fontFamily: 'Arimo', fontSize: 12),
+                    style: TextStyle(fontFamily: 'Arimo', fontSize: 14),
                   ),
-                  SizedBox(width: 10),
-                  Text(
-                    "Join Us",
-                    style: TextStyle(
-                      fontFamily: 'Arimo',
-                      color: const Color.fromRGBO(248, 98, 58, 1),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => HomeDay11()),
+                      );
+                    },
+                    child: Text(
+                      "Join Us",
+                      style: TextStyle(
+                        color: const Color.fromRGBO(234, 148, 89, 1),
+                        fontFamily: "Arimo",
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ],
@@ -207,7 +261,11 @@ class Tugas6Flutter extends StatelessWidget {
         SizedBox(width: 10),
         Text(
           currenText,
-          style: TextStyle(fontSize: 14, fontFamily: 'Arimo', color: Colors.black),
+          style: TextStyle(
+            fontSize: 14,
+            fontFamily: 'Arimo',
+            color: Colors.black,
+          ),
         ),
       ],
     );

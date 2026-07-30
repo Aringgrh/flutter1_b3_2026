@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter1_b3_2026/tugas/coba.dart';
+import 'package:flutter1_b3_2026/tugas/tugas_6_flutter.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       //   "/": (context) => RoutingDay11(),
       //   "/home": (context) => HomeDay11(),
       // },
-      home: Coba6(),
+      home: Tugas6Flutter(),
     );
   }
 }
