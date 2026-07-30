@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter1_b3_2026/day_11/home.dart';
+import 'package:flutter1_b3_2026/day_12/navigasi_bar.dart';
 
 class Tugas6Flutter extends StatefulWidget {
   const Tugas6Flutter({super.key});
@@ -21,6 +22,10 @@ class _Tugas6FlutterState extends State<Tugas6Flutter> {
               height: 186,
               width: double.infinity,
               decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/images/jakarta.jpeg'),
+                  fit: BoxFit.fill,
+                ),
                 color: const Color.fromRGBO(217, 217, 217, 1),
               ),
               child: Center(
@@ -29,7 +34,7 @@ class _Tugas6FlutterState extends State<Tugas6Flutter> {
                   style: TextStyle(
                     fontSize: 40,
                     fontWeight: FontWeight.bold,
-                    color: const Color.fromRGBO(255, 255, 255, 1),
+                    color: const Color.fromARGB(255, 0, 0, 0),
                     fontFamily: 'Arimo',
                   ),
                 ),
@@ -146,7 +151,7 @@ class _Tugas6FlutterState extends State<Tugas6Flutter> {
                 onPressed: () {
                   Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(builder: (context) => HomeDay11()),
+                    MaterialPageRoute(builder: (context) => NavigasiBar()),
                   );
                 },
                 child: Text(
