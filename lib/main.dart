@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter1_b3_2026/tugas/tugas_6_flutter.dart';
+import 'package:flutter1_b3_2026/day_13/login.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
       // PUSH NAMED
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
       //   "/": (context) => RoutingDay11(),
       //   "/home": (context) => HomeDay11(),
       // },
-      home: Tugas6Flutter(),
+      home: HalamanLogin(),
     );
   }
 }

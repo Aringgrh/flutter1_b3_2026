@@ -1,0 +1,71 @@
+import 'package:flutter/material.dart';
+import 'package:flutter1_b3_2026/day_13/bussines.dart';
+import 'package:flutter1_b3_2026/day_13/school.dart';
+import 'package:flutter1_b3_2026/extention/extention.dart';
+import 'package:flutter1_b3_2026/input_widget/check_box.dart';
+import 'package:flutter1_b3_2026/tugas/tugas_5_flutter.dart';
+
+class DrawerDay13 extends StatefulWidget {
+  const DrawerDay13({super.key});
+
+  @override
+  State<DrawerDay13> createState() => _DrawerDay13State();
+}
+
+class _DrawerDay13State extends State<DrawerDay13> {
+  int _selectedBottom = 0;
+  void changeBottom(int index) {
+    _selectedBottom = index;
+    print("Ini Adalah value dari $_selectedBottom");
+    setState(() {});
+    context.pop();
+  }
+
+  final List<Widget> _widgetOption = [
+    Tugas5Flutter(),
+    SchoolDay13(),
+    BussinesDay13(),
+    InputWidget13(),
+  ];
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Drawer")),
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            ListTile(
+              leading: Icon(Icons.home),
+              title: Text("Home"),
+              onTap: () {
+                changeBottom(0);
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.school),
+              title: Text("School"),
+              onTap: () {
+                changeBottom(1);
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.business),
+              title: Text("Bussines"),
+              onTap: () {
+                changeBottom(2);
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.input),
+              title: Text("Input Widget"),
+              onTap: () {
+                changeBottom(3);
+              },
+            ),
+          ],
+        ),
+      ),
+      body: _widgetOption.elementAt(_selectedBottom),
+    );
+  }
+}
