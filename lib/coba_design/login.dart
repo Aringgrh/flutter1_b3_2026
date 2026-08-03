@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter1_b3_2026/day_11/home.dart';
 
-class HalamanLogin extends StatefulWidget {
-  const HalamanLogin({super.key});
+class CobaLogin extends StatefulWidget {
+  const CobaLogin({super.key});
 
   @override
-  State<HalamanLogin> createState() => _HalamanLoginState();
+  State<CobaLogin> createState() => _CobaLoginState();
 }
 
-class _HalamanLoginState extends State<HalamanLogin> {
+class _CobaLoginState extends State<CobaLogin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

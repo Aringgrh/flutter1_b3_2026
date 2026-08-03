@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter1_b3_2026/day_11/home.dart';
-import 'package:flutter1_b3_2026/day_12/navigasi_bar.dart';
+import 'package:flutter1_b3_2026/day_13/bottom_nav.dart';
 
 class Tugas6Flutter extends StatefulWidget {
   const Tugas6Flutter({super.key});
@@ -151,7 +151,7 @@ class _Tugas6FlutterState extends State<Tugas6Flutter> {
                 onPressed: () {
                   Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(builder: (context) => NavigasiBar()),
+                    MaterialPageRoute(builder: (context) => BottomNavDay13()),
                   );
                 },
                 child: Text(

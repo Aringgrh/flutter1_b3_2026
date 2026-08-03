@@ -9,6 +9,7 @@ class HalamanLogin extends StatefulWidget {
   State<HalamanLogin> createState() => _HalamanLoginState();
 }
 
+bool _isCheck = false;
 bool sembunyikan = false;
 
 class _HalamanLoginState extends State<HalamanLogin> {
@@ -80,7 +81,18 @@ class _HalamanLoginState extends State<HalamanLogin> {
               ),
             ),
             SizedBox(height: 10),
-            inputBotton("Masukkan Email Anda"),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              alignment: AlignmentDirectional.topStart,
+              child: TextField(
+                decoration: InputDecoration(
+                  hintText: "Masukkan Email Anda",
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                ),
+              ),
+            ),
             SizedBox(height: 15),
             Container(
               padding: EdgeInsets.symmetric(horizontal: 20),
@@ -136,6 +148,19 @@ class _HalamanLoginState extends State<HalamanLogin> {
                   ),
                 ),
               ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Checkbox(
+                  value: _isCheck,
+                  onChanged: (value) {
+                    _isCheck = value ?? false;
+                    setState(() {});
+                  },
+                ),
+                Text("Saya Menyetujui Persyaratan"),
+              ],
             ),
             SizedBox(height: 30),
             Container(

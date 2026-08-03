@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter1_b3_2026/day_13/bussines.dart';
+import 'package:flutter1_b3_2026/day_13/login.dart';
 import 'package:flutter1_b3_2026/day_13/school.dart';
 import 'package:flutter1_b3_2026/extention/extention.dart';
 import 'package:flutter1_b3_2026/input_widget/check_box.dart';
@@ -26,6 +27,7 @@ class _DrawerDay13State extends State<DrawerDay13> {
     SchoolDay13(),
     BussinesDay13(),
     InputWidget13(),
+    HalamanLogin(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -60,6 +62,13 @@ class _DrawerDay13State extends State<DrawerDay13> {
               title: Text("Input Widget"),
               onTap: () {
                 changeBottom(3);
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.output, color: Colors.red),
+              title: Text("Keluar", style: TextStyle(color: Colors.red)),
+              onTap: () {
+                changeBottom(4);
               },
             ),
           ],

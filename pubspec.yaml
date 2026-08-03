@@ -37,6 +37,7 @@ dependencies:
   shimmer_animation: ^2.2.2+1
   motion_tab_bar: ^2.0.4
   google_nav_bar: ^5.0.7
+  intl: ^0.20.3
 
 dev_dependencies:
   flutter_test:
