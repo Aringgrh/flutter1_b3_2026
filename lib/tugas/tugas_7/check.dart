@@ -8,7 +8,7 @@ class CheckTugas7 extends StatefulWidget {
 }
 
 class _CheckTugas7State extends State<CheckTugas7> {
-  bool _isCheck = false;
+  bool isCheck = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,24 +17,21 @@ class _CheckTugas7State extends State<CheckTugas7> {
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Checkbox(
-                value: _isCheck,
-                onChanged: (value) {
-                  _isCheck = value ?? false;
-                  setState(() {});
-                },
-              ),
-              Text("Saya menyetujui persyaratan"),
-            ],
+            children: [checkBox(), Text("Saya menyetujui persyaratan")],
           ),
-          Text(
-            _isCheck
-                ? "Pendafratan diperbolehkan "
-                : "Pendaftaran Belum Tersedia",
-          ),
+          Text(isCheck ? "Pendaftaran diperbolehkan " : "Pendaftaran Belum Tersedia"),
         ],
       ),
+    );
+  }
+
+  Checkbox checkBox() {
+    return Checkbox(
+      value: isCheck,
+      onChanged: (value) {
+        isCheck = value ?? false;
+        setState(() {});
+      },
     );
   }
 }
