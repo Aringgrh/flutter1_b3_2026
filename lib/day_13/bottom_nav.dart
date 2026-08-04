@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter1_b3_2026/day_13/bussines.dart';
 import 'package:flutter1_b3_2026/day_13/drawer.dart';
 import 'package:flutter1_b3_2026/day_13/school.dart';
+import 'package:flutter1_b3_2026/day_15/list.dart';
 
 class BottomNavDay13 extends StatefulWidget {
   const BottomNavDay13({super.key});
@@ -22,6 +23,7 @@ class _BottomNavDay13State extends State<BottomNavDay13> {
     DrawerDay13(),
     SchoolDay13(),
     BussinesDay13(),
+    ListDataDay15(),
   ];
   @override
   Widget build(BuildContext context) {
