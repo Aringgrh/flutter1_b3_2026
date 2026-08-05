@@ -33,7 +33,7 @@ class ListDataDay15 extends StatelessWidget {
       body: ListView.builder(
         itemCount: namaBuah.length,
         itemBuilder: (BuildContext context, int index) {
-          return Text(namaBuah[index]);
+          return Text(namaBuah[index], style: TextStyle(height: 20));
         },
       ),
     );

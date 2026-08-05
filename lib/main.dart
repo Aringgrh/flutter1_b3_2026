@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter1_b3_2026/day_13/login.dart';
+import 'package:flutter1_b3_2026/day_13/drawer.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 void main() async {
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       // PUSH NAMED
       initialRoute: "/",
       routes: {
-        "/": (context) => HalamanLogin(),
+        "/": (context) => DrawerDay13(),
         // "/home": (context) => DrawerDay13(),
       },
       // home: HalamanLogin(),
