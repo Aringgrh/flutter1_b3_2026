@@ -57,7 +57,7 @@ class _Tugas10FlutterState extends State<Tugas10Flutter> {
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return "Email harus diisi";
-                  } else if (value.contains("@")) {
+                  } else if (value.contains('@')) {
                     return "Harus mengandung karakter @";
                   }
                   return null;
@@ -96,18 +96,48 @@ class _Tugas10FlutterState extends State<Tugas10Flutter> {
               ),
               ElevatedButton(
                 onPressed: () {
+                  print(namaController.text);
+                  print(emailController.text);
+                  print(nomorController.text);
+                  print(tambahanController.text);
                   if (_formKey.currentState!.validate()) {
+                    // context.push(DrawerDay13());
                     context.push(
                       DataPendaftaran(
-                        nama: namaController.text,
                         email: emailController.text,
-                        nomor: nomorController.text,
-                        tambahan: tambahanController.text,
+                        email: emailController.text,
+                        email: emailController.text,
                       ),
+                    );
+                  } else {
+                    print("Belum Tervalidasi");
+                    showDialog(
+                      context: context,
+                      builder: ((context) => AlertDialog(
+                        backgroundColor: Colors.grey[100],
+                        title: Text("Info"),
+                        content: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            LottieBuilder.asset(
+                              "assets/animation/Error animation.json",
+                            ),
+                            Text("${emailController.text} Tidak Valid"),
+                          ],
+                        ),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              context.pop();
+                            },
+                            child: Text("Baiklah"),
+                          ),
+                        ],
+                      )),
                     );
                   }
                 },
-                child: child,
+                child: Text("Tekan ini"),
               ),
             ],
           ),
