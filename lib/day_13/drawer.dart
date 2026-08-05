@@ -38,10 +38,9 @@ class _DrawerDay13State extends State<DrawerDay13> {
     ListOfMapDay15(),
     ListOfMapDay15(),
     Tugas9Flutter(),
-    TextFormFieldDay16(),
-    Tugas9Flutter(),
     ListLevel2(),
     ListLevenl1(),
+    TextFormFieldDay16(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -115,14 +114,14 @@ class _DrawerDay13State extends State<DrawerDay13> {
             ),
             ListTile(
               leading: Icon(Icons.list),
-              title: Text("TExt Form Field"),
+              title: Text("List"),
               onTap: () {
                 changeBottom(9);
               },
             ),
             ListTile(
               leading: Icon(Icons.list),
-              title: Text("TExt Form Field"),
+              title: Text("List"),
               onTap: () {
                 changeBottom(10);
               },
