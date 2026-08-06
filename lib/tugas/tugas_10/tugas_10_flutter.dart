@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter1_b3_2026/extention/extention.dart';
 import 'package:flutter1_b3_2026/tugas/tugas_10/data_pendaftaran.dart';
+import 'package:lottie/lottie.dart';
 
 class Tugas10Flutter extends StatefulWidget {
   const Tugas10Flutter({super.key});
@@ -57,7 +58,7 @@ class _Tugas10FlutterState extends State<Tugas10Flutter> {
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return "Email harus diisi";
-                  } else if (value.contains('@')) {
+                  } else if (!value.contains('@')) {
                     return "Harus mengandung karakter @";
                   }
                   return null;
@@ -104,9 +105,10 @@ class _Tugas10FlutterState extends State<Tugas10Flutter> {
                     // context.push(DrawerDay13());
                     context.push(
                       DataPendaftaran(
+                        nama: namaController.text,
                         email: emailController.text,
-                        email: emailController.text,
-                        email: emailController.text,
+                        nomor: nomorController.text,
+                        tambahan: tambahanController.text,
                       ),
                     );
                   } else {
@@ -119,7 +121,7 @@ class _Tugas10FlutterState extends State<Tugas10Flutter> {
                         content: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            LottieBuilder.asset(
+                            Lottie.asset(
                               "assets/animation/Error animation.json",
                             ),
                             Text("${emailController.text} Tidak Valid"),
