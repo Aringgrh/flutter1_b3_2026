@@ -3,17 +3,17 @@ import 'package:flutter1_b3_2026/day_11/home.dart';
 import 'package:flutter1_b3_2026/day_13/bottom_nav.dart';
 import 'package:flutter1_b3_2026/service/preference_handler.dart';
 
-class HalamanLogin extends StatefulWidget {
-  const HalamanLogin({super.key});
+class LoginTugas11 extends StatefulWidget {
+  const LoginTugas11({super.key});
 
   @override
-  State<HalamanLogin> createState() => _HalamanLoginState();
+  State<LoginTugas11> createState() => _HalamanLoginState();
 }
 
 bool _isCheck = false;
 bool sembunyikan = false;
 
-class _HalamanLoginState extends State<HalamanLogin> {
+class _HalamanLoginState extends State<LoginTugas11> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

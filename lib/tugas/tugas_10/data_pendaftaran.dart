@@ -19,7 +19,7 @@ class DataPendaftaran extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Konfirmasi Pendaftaran"),
+        title: Text("Konfirmasi Pendaftaran",),
         backgroundColor: Colors.cyan,
       ),
       body: Padding(

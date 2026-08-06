@@ -13,14 +13,14 @@ import 'package:flutter1_b3_2026/tugas/tugas_9/list_level_1.dart';
 import 'package:flutter1_b3_2026/tugas/tugas_9/list_level_2.dart';
 import 'package:flutter1_b3_2026/tugas/tugas_9/tugas_9_flutter.dart';
 
-class DrawerDay13 extends StatefulWidget {
-  const DrawerDay13({super.key});
+class DrawerTugas11 extends StatefulWidget {
+  const DrawerTugas11({super.key});
 
   @override
-  State<DrawerDay13> createState() => _DrawerDay13State();
+  State<DrawerTugas11> createState() => _DrawerTugas11State();
 }
 
-class _DrawerDay13State extends State<DrawerDay13> {
+class _DrawerTugas11State extends State<DrawerTugas11> {
   int _selectedBottom = 0;
   void changeBottom(int index) {
     _selectedBottom = index;

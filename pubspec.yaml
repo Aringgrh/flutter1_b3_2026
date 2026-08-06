@@ -41,6 +41,7 @@ dependencies:
   curved_navigation_bar_pro: ^2.0.11
   animated_custom_dropdown: ^4.0.0
   lottie: ^3.5.1
+  shared_preferences: ^2.5.5
 
 dev_dependencies:
   flutter_test:
