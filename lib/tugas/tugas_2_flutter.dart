@@ -6,22 +6,22 @@ class Tugas2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: 
-      Text("Tentang Aplikasi"),
-      centerTitle: true,
-      backgroundColor: Colors.green,
+      appBar: AppBar(
+        title: Text("Tentang Aplikasi"),
+        centerTitle: true,
+        backgroundColor: Colors.green,
       ),
 
-      body: Column( 
-        children: [Align(alignment: AlignmentGeometry.topCenter),
-        
-        Padding(
-          padding: const EdgeInsets.only(top: 20),
-          child: Text("Food Saver", style: 
-          TextStyle(fontSize: 34),),
-        )
-        
-      ],),
+      body: Column(
+        children: [
+          Align(alignment: AlignmentGeometry.topCenter),
+
+          Padding(
+            padding: const EdgeInsets.only(top: 20),
+            child: Text("Food Saver", style: TextStyle(fontSize: 34)),
+          ),
+        ],
+      ),
     );
   }
 }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter1_b3_2026/day_18/views/login_day_18.dart';
 import 'package:flutter1_b3_2026/extention/extention.dart';
 import 'package:flutter1_b3_2026/service/preference_handler.dart';
 import 'package:flutter1_b3_2026/tugas/tugas_11/drawer_tugas_11.dart';
-import 'package:flutter1_b3_2026/tugas/tugas_11/login_tugas_11.dart';
 import 'package:lottie/lottie.dart';
 
 class SplashScreenLogo extends StatefulWidget {
@@ -24,7 +24,7 @@ class _SplashScreenLogoState extends State<SplashScreenLogo> {
     if (PreferenceHandler.isLogin == true) {
       context.push(const DrawerTugas11());
     } else {
-      context.push(const LoginTugas11());
+      context.push(const LoginDay18SQFLITE());
     }
   }
 

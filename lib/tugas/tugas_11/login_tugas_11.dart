@@ -10,6 +10,10 @@ class LoginTugas11 extends StatefulWidget {
   State<LoginTugas11> createState() => _HalamanLoginState();
 }
 
+final TextEditingController emailC = TextEditingController();
+final TextEditingController passwordC = TextEditingController();
+final _formKey = GlobalKey<FormState>();
+
 bool _isCheck = false;
 bool sembunyikan = false;
 
@@ -17,6 +21,7 @@ class _HalamanLoginState extends State<LoginTugas11> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _formKey,
       body: SingleChildScrollView(
         child: Column(
           children: [

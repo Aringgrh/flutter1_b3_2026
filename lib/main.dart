@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter1_b3_2026/day_18/views/login_day_18.dart';
 import 'package:flutter1_b3_2026/service/preference_handler.dart';
-import 'package:flutter1_b3_2026/tugas/tugas_11/splash_screen.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 void main() async {
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       // PUSH NAMED
       initialRoute: "/",
       routes: {
-        "/": (context) => SplashScreenLogo(),
+        "/": (context) => LoginDay18SQFLITE(),
         // "/home": (context) => DrawerDay13(),
       },
       // home: HalamanLogin(),
