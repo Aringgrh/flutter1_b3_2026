@@ -84,6 +84,9 @@ class _DrawerTugas11State extends State<DrawerTugas11> {
               onTap: () {
                 PreferenceHandler.logOut();
                 context.pushAndRemoveAll(const HalamanLogin());
+                ScaffoldMessenger.of(
+                  context,
+                ).showSnackBar(SnackBar(content: Text("Berhasil LogOut")));
               },
             ),
             ListTile(

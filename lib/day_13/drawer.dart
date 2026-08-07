@@ -84,6 +84,9 @@ class _DrawerDay13State extends State<DrawerDay13> {
               onTap: () {
                 PreferenceHandler.logOut();
                 context.pushAndRemoveAll(const HalamanLogin());
+                ScaffoldMessenger.of(
+                  context,
+                ).showSnackBar(SnackBar(content: Text("Anda Telah LogOut")));
               },
             ),
             ListTile(
