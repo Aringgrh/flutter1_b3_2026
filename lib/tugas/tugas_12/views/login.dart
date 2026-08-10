@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter1_b3_2026/day_13/bottom_nav.dart';
 import 'package:flutter1_b3_2026/extention/extention.dart';
+import 'package:flutter1_b3_2026/service/preference_handler.dart';
 import 'package:flutter1_b3_2026/tugas/tugas_12/database/db_helper.dart';
+import 'package:flutter1_b3_2026/tugas/tugas_12/views/bottom_nav.dart';
 import 'package:flutter1_b3_2026/tugas/tugas_12/views/pendaftaran.dart';
 import 'package:flutter1_b3_2026/tugas/tugas_12/views/widget_method.dart';
 
@@ -23,7 +24,9 @@ class _HalamanLoginTugas12State extends State<HalamanLoginTugas12> {
     final user = emailC.text.trim();
     final pass = passwordC.text;
     if (user.isEmpty || pass.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Isi semua field!')));
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Isi semua field!')));
       return;
     }
 
@@ -32,10 +35,15 @@ class _HalamanLoginTugas12State extends State<HalamanLoginTugas12> {
     if (!mounted) return;
 
     if (pengguna != null) {
-      context.pushAndRemoveAll(BottomNavDay13());
+      await PreferenceHandler.setLogin(true);
+      if (!mounted) return;
+
+      context.pushAndRemoveAll(BottomNavTugas12());
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Login gagal! email atau Password salah.')), // SnackBar
+        const SnackBar(
+          content: Text('Login gagal! email atau Password salah.'),
+        ), // SnackBar
       );
     }
   }
@@ -61,12 +69,21 @@ class _HalamanLoginTugas12State extends State<HalamanLoginTugas12> {
                   ),
                 ],
               ),
-              Text("Fodos", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-              Text("Selamatkan Makanan, Selamatkan Bumi", style: TextStyle(fontSize: 16)),
+              Text(
+                "Fodos",
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              ),
+              Text(
+                "Selamatkan Makanan, Selamatkan Bumi",
+                style: TextStyle(fontSize: 16),
+              ),
               SizedBox(height: 20),
               Row(
                 children: [
-                  Text("Email", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                  Text(
+                    "Email",
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
                 ],
               ),
               textInput(
@@ -82,7 +99,10 @@ class _HalamanLoginTugas12State extends State<HalamanLoginTugas12> {
               SizedBox(height: 20),
               Row(
                 children: [
-                  Text("Password", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                  Text(
+                    "Password",
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
                 ],
               ),
               passField(
@@ -125,7 +145,10 @@ class _HalamanLoginTugas12State extends State<HalamanLoginTugas12> {
                     onPressed: () {},
                     child: Text(
                       "Lupa Kata Sandi?",
-                      style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                        color: Colors.green,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ],
@@ -134,16 +157,20 @@ class _HalamanLoginTugas12State extends State<HalamanLoginTugas12> {
                 height: 50,
                 width: 400,
                 child: ElevatedButton(
-                  style: ButtonStyle(backgroundColor: WidgetStatePropertyAll(Colors.green)),
-                  onPressed: () {
+                  style: ButtonStyle(
+                    backgroundColor: WidgetStatePropertyAll(Colors.green),
+                  ),
+                  onPressed: () async {
                     if (_formKey.currentState!.validate()) {
                       loginPengguna();
-
                       // context.push(PendaftaranTugas12());
                     }
                     return;
                   },
-                  child: Text("Login", style: TextStyle(fontSize: 24, color: Colors.white)),
+                  child: Text(
+                    "Login",
+                    style: TextStyle(fontSize: 24, color: Colors.white),
+                  ),
                 ),
               ),
               SizedBox(height: 20),
@@ -151,7 +178,10 @@ class _HalamanLoginTugas12State extends State<HalamanLoginTugas12> {
                 children: [
                   Expanded(child: Divider()),
                   SizedBox(width: 10),
-                  Text("ATAU MASUK DENGAN", style: TextStyle(color: Colors.grey)),
+                  Text(
+                    "ATAU MASUK DENGAN",
+                    style: TextStyle(color: Colors.grey),
+                  ),
                   SizedBox(width: 10),
                   Expanded(child: Divider()),
                 ],
@@ -162,15 +192,24 @@ class _HalamanLoginTugas12State extends State<HalamanLoginTugas12> {
                 height: 50,
                 width: 400,
                 child: ElevatedButton(
-                  style: ButtonStyle(backgroundColor: WidgetStatePropertyAll(Colors.white)),
+                  style: ButtonStyle(
+                    backgroundColor: WidgetStatePropertyAll(Colors.white),
+                  ),
                   onPressed: () {},
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Image.asset("assets/images/fbIcon.png", width: 40, height: 40),
+                      Image.asset(
+                        "assets/images/fbIcon.png",
+                        width: 40,
+                        height: 40,
+                      ),
                       SizedBox(width: 10),
 
-                      Text("Facebook", style: TextStyle(color: Colors.black, fontSize: 16)),
+                      Text(
+                        "Facebook",
+                        style: TextStyle(color: Colors.black, fontSize: 16),
+                      ),
                     ],
                   ),
                 ),
@@ -180,14 +219,23 @@ class _HalamanLoginTugas12State extends State<HalamanLoginTugas12> {
                 height: 50,
                 width: 400,
                 child: ElevatedButton(
-                  style: ButtonStyle(backgroundColor: WidgetStatePropertyAll(Colors.white)),
+                  style: ButtonStyle(
+                    backgroundColor: WidgetStatePropertyAll(Colors.white),
+                  ),
                   onPressed: () {},
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Image.asset("assets/images/google.png", width: 70, height: 70),
+                      Image.asset(
+                        "assets/images/google.png",
+                        width: 70,
+                        height: 70,
+                      ),
 
-                      Text("Google", style: TextStyle(color: Colors.black, fontSize: 16)),
+                      Text(
+                        "Google",
+                        style: TextStyle(color: Colors.black, fontSize: 16),
+                      ),
                     ],
                   ),
                 ),
@@ -203,7 +251,10 @@ class _HalamanLoginTugas12State extends State<HalamanLoginTugas12> {
                     },
                     child: Text(
                       "Daftar Sekarang",
-                      style: TextStyle(fontWeight: FontWeight.bold, color: Colors.green),
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.green,
+                      ),
                     ),
                   ),
                 ],
@@ -214,6 +265,4 @@ class _HalamanLoginTugas12State extends State<HalamanLoginTugas12> {
       ),
     );
   }
-
- 
 }
