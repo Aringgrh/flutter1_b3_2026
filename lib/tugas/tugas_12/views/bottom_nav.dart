@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter1_b3_2026/tugas/tugas_12/views/beranda.dart';
+import 'package:flutter1_b3_2026/tugas/tugas_12/views/home/home.dart';
 import 'package:flutter1_b3_2026/tugas/tugas_12/views/pesanan.dart';
 import 'package:flutter1_b3_2026/tugas/tugas_12/views/profile.dart';
-import 'package:flutter1_b3_2026/tugas/tugas_12/views/search.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
 class BottomNavTugas12 extends StatefulWidget {
@@ -21,7 +21,7 @@ class _BottomNavTugas12State extends State<BottomNavTugas12> {
 
   final List<Widget> pages = [
     BerandaTugas12(),
-    PencarianTugas12(),
+    HomeFodos(),
     PesananTugas12(),
     ProfileTugas12(),
   ];

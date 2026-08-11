@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter1_b3_2026/day_13/login.dart';
 import 'package:flutter1_b3_2026/extention/extention.dart';
 import 'package:flutter1_b3_2026/service/preference_handler.dart';
+import 'package:flutter1_b3_2026/tugas/tugas_12/views/login.dart';
 
 class PesananTugas12 extends StatefulWidget {
   const PesananTugas12({super.key});
@@ -18,7 +18,7 @@ class _PesananTugas12State extends State<PesananTugas12> {
         child: IconButton(
           onPressed: () {
             PreferenceHandler.logOut();
-            context.pushAndRemoveAll(const HalamanLogin());
+            context.pushAndRemoveAll(const HalamanLoginTugas12());
             ScaffoldMessenger.of(
               context,
             ).showSnackBar(SnackBar(content: Text("Berhasil LogOut")));

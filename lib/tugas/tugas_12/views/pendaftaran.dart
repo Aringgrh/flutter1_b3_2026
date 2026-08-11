@@ -70,7 +70,7 @@ class _PendaftaranTugas12State extends State<PendaftaranTugas12> {
       body: SingleChildScrollView(
         child: Container(
           margin: EdgeInsets.symmetric(horizontal: 20, vertical: 50),
-          height: 900,
+          height: 1200,
           width: 400,
           decoration: BoxDecoration(
             color: Colors.white,

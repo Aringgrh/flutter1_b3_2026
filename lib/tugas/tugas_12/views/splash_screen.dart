@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter1_b3_2026/extention/extention.dart';
 import 'package:flutter1_b3_2026/service/preference_handler.dart';
+import 'package:flutter1_b3_2026/tugas/tugas_12/constants/App_images.dart';
 import 'package:flutter1_b3_2026/tugas/tugas_12/views/bottom_nav.dart';
 import 'package:flutter1_b3_2026/tugas/tugas_12/views/login.dart';
 import 'package:lottie/lottie.dart';
@@ -36,7 +37,18 @@ class _SplashScreenTugas12State extends State<SplashScreenTugas12> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             SizedBox(height: 100),
-            Image.asset("assets/images/alpukat.png", height: 200, width: 200),
+            Container(
+              height: 200,
+              width: 200,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(100),
+                color: Colors.black,
+                image: DecorationImage(
+                  image: AssetImage(AppImages.logo),
+                  fit: BoxFit.fill,
+                ),
+              ),
+            ),
 
             Lottie.asset("assets/animation/loading.json", height: 200),
           ],

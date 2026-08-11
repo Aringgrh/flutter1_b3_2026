@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 // import 'package:flutter1_b3_2026/day_18/views/login_day_18.dart';
 import 'package:flutter1_b3_2026/service/preference_handler.dart';
-import 'package:flutter1_b3_2026/tugas/tugas_12/views/splash_screen.dart';
+import 'package:flutter1_b3_2026/tugas/tugas_12/views/bottom_nav.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 void main() async {
@@ -20,11 +20,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
+      theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.white)),
       // PUSH NAMED
       initialRoute: "/",
       routes: {
-        "/": (context) => SplashScreenTugas12(),
+        "/": (context) => BottomNavTugas12(),
         // "/home": (context) => DrawerDay13(),
       },
       // home: HalamanLogin(),
