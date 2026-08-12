@@ -90,4 +90,32 @@ class DBHelper {
       return false;
     }
   }
+
+  Future<UserModelLoginSQL?> getUserById(int id) async {
+    final db = await database;
+    final List<Map<String, dynamic>> results = await db.query(
+      'users',
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+
+    if (results.isNotEmpty) {
+      return UserModelLoginSQL.fromMap(results.first);
+    }
+    return null;
+  }
+
+  Future<UserModelLoginSQL?> getUserByEmail(String email) async {
+    final db = await database;
+    final List<Map<String, dynamic>> results = await db.query(
+      'users',
+      where: 'email = ?',
+      whereArgs: [email],
+    );
+
+    if (results.isNotEmpty) {
+      return UserModelLoginSQL.fromMap(results.first);
+    }
+    return null;
+  }
 }

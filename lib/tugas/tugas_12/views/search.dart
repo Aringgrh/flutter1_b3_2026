@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class PencarianTugas12 extends StatefulWidget {
-  const PencarianTugas12({super.key});
+class HalamanPencarianFodos extends StatefulWidget {
+  const HalamanPencarianFodos({super.key});
 
   @override
-  State<PencarianTugas12> createState() => _PencarianTugas12State();
+  State<HalamanPencarianFodos> createState() => _HalamanPencarianFodosState();
 }
 
-class _PencarianTugas12State extends State<PencarianTugas12> {
+class _HalamanPencarianFodosState extends State<HalamanPencarianFodos> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(appBar: AppBar(title: Text("Pencarian")));

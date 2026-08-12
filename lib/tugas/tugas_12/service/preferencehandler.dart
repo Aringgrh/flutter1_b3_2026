@@ -12,6 +12,16 @@ class PreferenceHandler {
     await _prefs.setBool(_keyIsLogin, isLogin);
   }
 
+  static Future<void> setUserEmail(String email) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString(_keyIsLogin, email);
+  }
+
+  static Future<String?> getUserEmail() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString(_keyIsLogin);
+  }
+
   static bool get isLogin {
     return _prefs.getBool(_keyIsLogin) ?? false;
   }

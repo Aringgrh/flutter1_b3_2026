@@ -1,6 +1,8 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter1_b3_2026/tugas/tugas_12/constants/App_images.dart';
 import 'package:flutter1_b3_2026/tugas/tugas_12/constants/app_textstyle.dart';
+import 'package:flutter1_b3_2026/tugas/tugas_12/constants/carousel.dart';
+import 'package:flutter1_b3_2026/tugas/tugas_12/constants/display_produk.dart';
 import 'package:flutter1_b3_2026/tugas/tugas_12/views/home/widget_home.dart';
 
 class HomeFodos extends StatefulWidget {
@@ -21,6 +23,7 @@ class _HomeFodosState extends State<HomeFodos> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
+        physics: AlwaysScrollableScrollPhysics(),
         child: Column(
           children: [
             SizedBox(height: 20),
@@ -87,31 +90,7 @@ class _HomeFodosState extends State<HomeFodos> {
                 ),
               ),
             ),
-            CarouselSlider(
-              items: gambar
-                  .map(
-                    (item) => Container(
-                      margin: EdgeInsets.all(20),
-                      decoration: BoxDecoration(
-                        border: BoxBorder.all(),
-                        borderRadius: BorderRadius.circular(10),
-                        image: DecorationImage(
-                          image: AssetImage(item),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                  )
-                  .toList(),
-              options: CarouselOptions(
-                height: 250,
-                autoPlay: true,
-                autoPlayInterval: Duration(seconds: 3),
-                autoPlayAnimationDuration: Duration(seconds: 2),
-                aspectRatio: 16 / 9,
-                viewportFraction: 0.8,
-              ),
-            ),
+            carouselGambar(),
             Container(
               padding: EdgeInsets.symmetric(horizontal: 20),
               child: Row(
@@ -123,6 +102,8 @@ class _HomeFodosState extends State<HomeFodos> {
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Row(
                 children: [
+                  pilihanKategori(icon: Icons.restaurant_menu, text: "Semua"),
+                  SizedBox(width: 10),
                   pilihanKategori(icon: Icons.bakery_dining, text: "Roti"),
                   SizedBox(width: 10),
                   pilihanKategori(
@@ -132,6 +113,31 @@ class _HomeFodosState extends State<HomeFodos> {
                   ),
                 ],
               ),
+            ),
+            SizedBox(height: 20),
+            displayProduk(
+              image: AppImages.produk1,
+              namaMakanan: "Jeruk",
+              namaToko: "Toko buah Ari",
+              sisaPorsi: "3",
+              pickUp: "19:00-20:00",
+            ),
+            SizedBox(height: 20),
+
+            displayProduk(
+              image: AppImages.produk2,
+              namaMakanan: "alpukat",
+              namaToko: "Warung makan Ari",
+              sisaPorsi: "5",
+              pickUp: "20:00-21:00",
+            ),
+            SizedBox(height: 20),
+            displayProduk(
+              image: AppImages.produk3,
+              namaMakanan: "Semangka",
+              namaToko: "Rumah makan sederhana",
+              sisaPorsi: "1",
+              pickUp: "20:00-21:00",
             ),
           ],
         ),
