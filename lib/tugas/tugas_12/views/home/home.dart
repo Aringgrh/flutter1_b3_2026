@@ -12,136 +12,260 @@ class HomeFodos extends StatefulWidget {
   State<HomeFodos> createState() => _HomeFodosState();
 }
 
-final List<String> gambar = [
-  "assets/images/jeruk.png",
-  "assets/images/pisang.png",
-  "assets/images/semangka.png",
-];
-
 class _HomeFodosState extends State<HomeFodos> {
+  int selectedCategoryIndex = 0;
+
+  final List<Map<String, dynamic>> categories = [
+    {"name": "Roti", "icon": Icons.bakery_dining},
+    {"name": "Makanan Berat", "icon": Icons.restaurant},
+    {"name": "Minuman", "icon": Icons.local_drink},
+    {"name": "Buah & Sayur", "icon": Icons.eco},
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        physics: AlwaysScrollableScrollPhysics(),
-        child: Column(
-          children: [
-            SizedBox(height: 20),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 10),
-              height: 70,
-              width: double.infinity,
-              decoration: BoxDecoration(color: Colors.transparent),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  IconButton(
-                    onPressed: () {},
-                    icon: Row(
-                      children: [
-                        Icon(Icons.location_on_outlined),
-                        TextButton(
-                          onPressed: () {},
-                          child: Row(
-                            children: [
-                              Text("JL Sudirman"),
-                              Icon(Icons.arrow_drop_down),
+      backgroundColor: AppColors.background,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          physics: const AlwaysScrollableScrollPhysics(),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 8),
+
+              // Top App Bar / Location Section
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    // Location Info
+                    InkWell(
+                      onTap: () {},
+                      borderRadius: BorderRadius.circular(8),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: const [
+                              Icon(
+                                Icons.location_on,
+                                color: AppColors.primary,
+                                size: 20,
+                              ),
+                              SizedBox(width: 4),
+                              Text(
+                                "Jl. Sudirman No. 45",
+                                style: AppTextstyle.heading1,
+                              ),
+                              SizedBox(width: 2),
+                              Icon(
+                                Icons.keyboard_arrow_down,
+                                color: AppColors.textGrey,
+                                size: 20,
+                              ),
                             ],
+                          ),
+                          const Padding(
+                            padding: EdgeInsets.only(left: 24),
+                            child: Text(
+                              "Sekitar kamu",
+                              style: TextStyle(
+                                fontSize: 11,
+                                color: AppColors.textGrey,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+
+                    // Header Action Buttons
+                    Row(
+                      children: [
+                        IconButton(
+                          onPressed: () {},
+                          icon: const Icon(
+                            Icons.favorite_border,
+                            color: AppColors.primary,
+                          ),
+                        ),
+                        IconButton(
+                          onPressed: () {},
+                          icon: const Icon(
+                            Icons.notifications_none_outlined,
+                            color: AppColors.primary,
+                          ),
+                        ),
+                        IconButton(
+                          onPressed: () {},
+                          icon: const Icon(
+                            Icons.shopping_cart_outlined,
+                            color: AppColors.primary,
                           ),
                         ),
                       ],
                     ),
-                  ),
-                  Row(
-                    children: [
-                      IconButton(
-                        onPressed: () {},
-                        icon: Icon(Icons.favorite_border),
-                      ),
-                      IconButton(
-                        onPressed: () {},
-                        icon: Icon(Icons.notifications_none_outlined),
-                      ),
-                      IconButton(
-                        onPressed: () {},
-                        icon: Icon(Icons.shopping_cart_outlined),
+                  ],
+                ),
+              ),
+
+              const SizedBox(height: 8),
+
+              // Search Bar Section
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Container(
+                  height: 48,
+                  decoration: BoxDecoration(
+                    color: AppColors.surface,
+                    borderRadius: BorderRadius.circular(50),
+                    border: Border.all(color: AppColors.border.withValues(alpha: 0.5)),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withValues(alpha: 0.04),
+                        blurRadius: 12,
+                        offset: const Offset(0, 4),
                       ),
                     ],
                   ),
-                ],
-              ),
-            ),
-            SizedBox(height: 20),
-            Container(
-              height: 50,
-              width: double.infinity,
-              margin: EdgeInsets.symmetric(horizontal: 20),
-              child: TextFormField(
-                decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.search),
-                  hintText: "Cari makanan",
-                  suffixIcon: IconButton(
-                    onPressed: () {},
-                    icon: Icon(Icons.filter_list_outlined),
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(50),
+                  child: TextField(
+                    decoration: InputDecoration(
+                      hintText: "Cari surplus makanan lezat...",
+                      hintStyle: const TextStyle(
+                        color: AppColors.textGrey,
+                        fontSize: 13,
+                      ),
+                      prefixIcon: const Icon(
+                        Icons.search,
+                        color: AppColors.textGrey,
+                        size: 20,
+                      ),
+                      suffixIcon: IconButton(
+                        onPressed: () {},
+                        icon: const Icon(
+                          Icons.tune,
+                          color: AppColors.primary,
+                          size: 20,
+                        ),
+                      ),
+                      border: InputBorder.none,
+                      contentPadding: const EdgeInsets.symmetric(vertical: 14),
+                    ),
                   ),
                 ),
               ),
-            ),
-            carouselGambar(),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              child: Row(
-                children: [Text("Kategori", style: AppTextstyle.heading2)],
-              ),
-            ),
-            SizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Row(
-                children: [
-                  pilihanKategori(icon: Icons.restaurant_menu, text: "Semua"),
-                  SizedBox(width: 10),
-                  pilihanKategori(icon: Icons.bakery_dining, text: "Roti"),
-                  SizedBox(width: 10),
-                  pilihanKategori(
-                    width: 150,
-                    icon: Icons.restaurant_outlined,
-                    text: "Makanan Berat",
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(height: 20),
-            displayProduk(
-              image: AppImages.produk1,
-              namaMakanan: "Jeruk",
-              namaToko: "Toko buah Ari",
-              sisaPorsi: "3",
-              pickUp: "19:00-20:00",
-            ),
-            SizedBox(height: 20),
 
-            displayProduk(
-              image: AppImages.produk2,
-              namaMakanan: "alpukat",
-              namaToko: "Warung makan Ari",
-              sisaPorsi: "5",
-              pickUp: "20:00-21:00",
-            ),
-            SizedBox(height: 20),
-            displayProduk(
-              image: AppImages.produk3,
-              namaMakanan: "Semangka",
-              namaToko: "Rumah makan sederhana",
-              sisaPorsi: "1",
-              pickUp: "20:00-21:00",
-            ),
-          ],
+              // Hero Banner Slider
+              carouselGambar(),
+
+              // Category Section
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: const Text(
+                  "Kategori",
+                  style: AppTextstyle.sectionTitle,
+                ),
+              ),
+              const SizedBox(height: 12),
+              SizedBox(
+                height: 40,
+                child: ListView.separated(
+                  scrollDirection: Axis.horizontal,
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  itemCount: categories.length,
+                  separatorBuilder: (context, index) => const SizedBox(width: 10),
+                  itemBuilder: (context, index) {
+                    final cat = categories[index];
+                    return pilihanKategori(
+                      icon: cat["icon"],
+                      text: cat["name"],
+                      isSelected: selectedCategoryIndex == index,
+                      onTap: () {
+                        setState(() {
+                          selectedCategoryIndex = index;
+                        });
+                      },
+                    );
+                  },
+                ),
+              ),
+
+              const SizedBox(height: 24),
+
+              // Product Section Header ("Paling Diminati di Sekitarmu")
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      "Paling Diminati di Sekitarmu",
+                      style: AppTextstyle.sectionTitle,
+                    ),
+                    TextButton(
+                      onPressed: () {},
+                      style: TextButton.styleFrom(
+                        padding: EdgeInsets.zero,
+                        minimumSize: Size.zero,
+                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      ),
+                      child: const Text(
+                        "LIHAT SEMUA",
+                        style: TextStyle(
+                          color: AppColors.secondary,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 11,
+                          letterSpacing: 0.5,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              const SizedBox(height: 8),
+
+              // Product Display Cards
+              displayProduk(
+                image: AppImages.produk1,
+                namaMakanan: "Artisan Donut Box (Isi 6)",
+                namaToko: "Glazed & Confused Bakery",
+                sisaPorsi: "3",
+                pickUp: "19:00 - 20:30",
+                distance: "0.8 km",
+                harga: "Rp 15.000",
+                hargaAsli: "Rp 45.000",
+              ),
+              displayProduk(
+                image: AppImages.produk2,
+                namaMakanan: "Nasi Campur Spesial",
+                namaToko: "Warung Selera Nusantara",
+                sisaPorsi: "5",
+                pickUp: "20:00 - 21:30",
+                distance: "1.2 km",
+                harga: "Rp 12.000",
+                hargaAsli: "Rp 35.000",
+              ),
+              displayProduk(
+                image: AppImages.produk3,
+                namaMakanan: "Harvest Salad Bowl",
+                namaToko: "Green Soul Kitchen",
+                sisaPorsi: "2",
+                pickUp: "18:30 - 20:00",
+                distance: "0.5 km",
+                harga: "Rp 20.000",
+                hargaAsli: "Rp 65.000",
+              ),
+
+              const SizedBox(height: 24),
+            ],
+          ),
         ),
       ),
     );
   }
 }
+
