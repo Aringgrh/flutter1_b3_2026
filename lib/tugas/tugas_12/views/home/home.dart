@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter1_b3_2026/tugas/tugas_12/constants/App_images.dart';
 import 'package:flutter1_b3_2026/tugas/tugas_12/constants/app_textstyle.dart';
 import 'package:flutter1_b3_2026/tugas/tugas_12/constants/carousel.dart';
 import 'package:flutter1_b3_2026/tugas/tugas_12/constants/display_produk.dart';
 import 'package:flutter1_b3_2026/tugas/tugas_12/views/home/widget_home.dart';
+import 'package:flutter1_b3_2026/tugas/tugas_12/database/db_helper.dart';
+import 'package:flutter1_b3_2026/tugas/tugas_12/model/produk_model.dart';
+import 'package:flutter1_b3_2026/tugas/tugas_12/views/detail_makanan.dart';
+import 'package:flutter1_b3_2026/tugas/tugas_12/views/home/halaman_favorit.dart';
+import 'package:flutter1_b3_2026/tugas/tugas_12/views/home/halaman_keranjang.dart';
 
 class HomeFodos extends StatefulWidget {
   const HomeFodos({super.key});
@@ -15,11 +19,20 @@ class HomeFodos extends StatefulWidget {
 class _HomeFodosState extends State<HomeFodos> {
   int selectedCategoryIndex = 0;
 
+  Future<List<ProdukModel>> _loadProduk() {
+    if (selectedCategoryIndex == 1) {
+      return DBHelper().getProdukByKategori('roti');
+    } else if (selectedCategoryIndex == 2) {
+      return DBHelper().getProdukByKategori('makanan berat');
+    } else {
+      return DBHelper().getAllProduk();
+    }
+  }
+
   final List<Map<String, dynamic>> categories = [
+    {"name": "Semua", "icon": Icons.menu_book_outlined},
     {"name": "Roti", "icon": Icons.bakery_dining},
     {"name": "Makanan Berat", "icon": Icons.restaurant},
-    {"name": "Minuman", "icon": Icons.local_drink},
-    {"name": "Buah & Sayur", "icon": Icons.eco},
   ];
 
   @override
@@ -36,7 +49,10 @@ class _HomeFodosState extends State<HomeFodos> {
 
               // Top App Bar / Location Section
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 8,
+                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -86,7 +102,14 @@ class _HomeFodosState extends State<HomeFodos> {
                     Row(
                       children: [
                         IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const HalamanFavorit(),
+                              ),
+                            );
+                          },
                           icon: const Icon(
                             Icons.favorite_border,
                             color: AppColors.primary,
@@ -100,7 +123,14 @@ class _HomeFodosState extends State<HomeFodos> {
                           ),
                         ),
                         IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const HalamanKeranjang(),
+                              ),
+                            );
+                          },
                           icon: const Icon(
                             Icons.shopping_cart_outlined,
                             color: AppColors.primary,
@@ -122,7 +152,9 @@ class _HomeFodosState extends State<HomeFodos> {
                   decoration: BoxDecoration(
                     color: AppColors.surface,
                     borderRadius: BorderRadius.circular(50),
-                    border: Border.all(color: AppColors.border.withValues(alpha: 0.5)),
+                    border: Border.all(
+                      color: AppColors.border.withValues(alpha: 0.5),
+                    ),
                     boxShadow: [
                       BoxShadow(
                         color: Colors.black.withValues(alpha: 0.04),
@@ -164,10 +196,7 @@ class _HomeFodosState extends State<HomeFodos> {
               // Category Section
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: const Text(
-                  "Kategori",
-                  style: AppTextstyle.sectionTitle,
-                ),
+                child: const Text("Kategori", style: AppTextstyle.sectionTitle),
               ),
               const SizedBox(height: 12),
               SizedBox(
@@ -176,7 +205,8 @@ class _HomeFodosState extends State<HomeFodos> {
                   scrollDirection: Axis.horizontal,
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   itemCount: categories.length,
-                  separatorBuilder: (context, index) => const SizedBox(width: 10),
+                  separatorBuilder: (context, index) =>
+                      const SizedBox(width: 10),
                   itemBuilder: (context, index) {
                     final cat = categories[index];
                     return pilihanKategori(
@@ -229,35 +259,62 @@ class _HomeFodosState extends State<HomeFodos> {
               const SizedBox(height: 8),
 
               // Product Display Cards
-              displayProduk(
-                image: AppImages.produk1,
-                namaMakanan: "Artisan Donut Box (Isi 6)",
-                namaToko: "Glazed & Confused Bakery",
-                sisaPorsi: "3",
-                pickUp: "19:00 - 20:30",
-                distance: "0.8 km",
-                harga: "Rp 15.000",
-                hargaAsli: "Rp 45.000",
-              ),
-              displayProduk(
-                image: AppImages.produk2,
-                namaMakanan: "Nasi Campur Spesial",
-                namaToko: "Warung Selera Nusantara",
-                sisaPorsi: "5",
-                pickUp: "20:00 - 21:30",
-                distance: "1.2 km",
-                harga: "Rp 12.000",
-                hargaAsli: "Rp 35.000",
-              ),
-              displayProduk(
-                image: AppImages.produk3,
-                namaMakanan: "Harvest Salad Bowl",
-                namaToko: "Green Soul Kitchen",
-                sisaPorsi: "2",
-                pickUp: "18:30 - 20:00",
-                distance: "0.5 km",
-                harga: "Rp 20.000",
-                hargaAsli: "Rp 65.000",
+              FutureBuilder<List<ProdukModel>>(
+                future: _loadProduk(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(
+                      child: Padding(
+                        padding: EdgeInsets.all(24.0),
+                        child: CircularProgressIndicator(),
+                      ),
+                    );
+                  }
+                  if (snapshot.hasError) {
+                    return Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(24.0),
+                        child: Text('Gagal memuat produk: ${snapshot.error}'),
+                      ),
+                    );
+                  }
+                  if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                    return const Center(
+                      child: Padding(
+                        padding: EdgeInsets.all(24.0),
+                        child: Text('Tidak ada produk tersedia.'),
+                      ),
+                    );
+                  }
+
+                  final listProduk = snapshot.data!;
+                  return ListView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: listProduk.length,
+                    itemBuilder: (context, index) {
+                      final produk = listProduk[index];
+                      return displayProduk(
+                        image: produk.gambar,
+                        namaMakanan: produk.namaProduk,
+                        namaToko: produk.namaToko,
+                        sisaPorsi: produk.stok.toString(),
+                        pickUp: "19:00 - 20:30", // Mock pickup time
+                        harga:
+                            "Rp ${produk.harga.toInt().toString().replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]}.')}",
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  DetailMakanan(produk: produk),
+                            ),
+                          );
+                        },
+                      );
+                    },
+                  );
+                },
               ),
 
               const SizedBox(height: 24),
@@ -268,4 +325,3 @@ class _HomeFodosState extends State<HomeFodos> {
     );
   }
 }
-

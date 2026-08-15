@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter1_b3_2026/tugas/tugas_12/constants/app_textstyle.dart';
 import 'package:flutter1_b3_2026/tugas/tugas_12/views/home/home.dart';
-import 'package:flutter1_b3_2026/tugas/tugas_12/views/pesanan.dart';
+import 'package:flutter1_b3_2026/tugas/tugas_12/views/pesanan/pesanan.dart';
 import 'package:flutter1_b3_2026/tugas/tugas_12/views/profile/profile.dart';
 import 'package:flutter1_b3_2026/tugas/tugas_12/views/search.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
@@ -29,6 +30,7 @@ class _BottomNavTugas12State extends State<BottomNavTugas12> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: GNav(
+        rippleColor: AppColors.secondary,
         onTabChange: (value) {
           changeBottom(value);
         },
@@ -36,23 +38,31 @@ class _BottomNavTugas12State extends State<BottomNavTugas12> {
         tabs: [
           GButton(
             icon: Icons.home_outlined,
+            iconActiveColor: Colors.white,
             text: ("Beranda"),
-            backgroundColor: Colors.cyan,
+            textColor: Colors.white,
+            backgroundColor: AppColors.secondary,
           ),
           GButton(
             icon: Icons.search,
+            iconActiveColor: Colors.white,
             text: ("Pencarian"),
-            backgroundColor: Colors.cyan,
+            textColor: Colors.white,
+            backgroundColor: AppColors.secondary,
           ),
           GButton(
             icon: Icons.shopping_bag_outlined,
+            iconActiveColor: Colors.white,
             text: ("Pesanan"),
-            backgroundColor: Colors.cyan,
+            textColor: Colors.white,
+            backgroundColor: AppColors.secondary,
           ),
           GButton(
             icon: Icons.person_outline,
+            iconActiveColor: Colors.white,
             text: ("Profil"),
-            backgroundColor: Colors.cyan,
+            textColor: Colors.white,
+            backgroundColor: AppColors.secondary,
           ),
         ],
       ),

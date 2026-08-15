@@ -7,6 +7,7 @@ class PreferenceHandler {
   }
 
   static const _keyIsLogin = "isLogin";
+  static const _keyUserEmail = "userEmail";
 
   static Future<void> setLogin(bool isLogin) async {
     await _prefs.setBool(_keyIsLogin, isLogin);
@@ -16,7 +17,16 @@ class PreferenceHandler {
     return _prefs.getBool(_keyIsLogin) ?? false;
   }
 
+  static Future<void> setUserEmail(String email) async {
+    await _prefs.setString(_keyUserEmail, email);
+  }
+
+  static Future<String?> getUserEmail() async {
+    return _prefs.getString(_keyUserEmail);
+  }
+
   static Future<void> logOut() async {
     await _prefs.remove(_keyIsLogin);
+    await _prefs.remove(_keyUserEmail);
   }
 }

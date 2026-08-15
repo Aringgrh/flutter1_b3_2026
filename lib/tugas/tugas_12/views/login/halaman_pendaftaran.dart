@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter1_b3_2026/extention/extention.dart';
+import 'package:flutter1_b3_2026/tugas/tugas_12/constants/App_images.dart';
+import 'package:flutter1_b3_2026/tugas/tugas_12/constants/app_textstyle.dart';
 import 'package:flutter1_b3_2026/tugas/tugas_12/database/db_helper.dart';
 import 'package:flutter1_b3_2026/tugas/tugas_12/model/login_user_model.dart';
-import 'package:flutter1_b3_2026/tugas/tugas_12/views/login.dart';
+import 'package:flutter1_b3_2026/tugas/tugas_12/views/login/halaman_login.dart';
 import 'package:flutter1_b3_2026/tugas/tugas_12/views/widget_method.dart';
 
-class PendaftaranTugas12 extends StatefulWidget {
-  const PendaftaranTugas12({super.key});
+class HalamanPendaftaranFodos extends StatefulWidget {
+  const HalamanPendaftaranFodos({super.key});
 
   @override
-  State<PendaftaranTugas12> createState() => _PendaftaranTugas12State();
+  State<HalamanPendaftaranFodos> createState() =>
+      _HalamanPendaftaranFodosState();
 }
 
-class _PendaftaranTugas12State extends State<PendaftaranTugas12> {
+class _HalamanPendaftaranFodosState extends State<HalamanPendaftaranFodos> {
   bool hide = true;
   TextEditingController namaC = TextEditingController();
   TextEditingController nomorC = TextEditingController();
@@ -56,7 +59,7 @@ class _PendaftaranTugas12State extends State<PendaftaranTugas12> {
         context,
       ).showSnackBar(const SnackBar(content: Text('Akun berhasil dibuat')));
 
-      context.push(HalamanLoginTugas12());
+      context.push(HalamanLoginFodos());
     } else {
       ScaffoldMessenger.of(
         context,
@@ -93,10 +96,7 @@ class _PendaftaranTugas12State extends State<PendaftaranTugas12> {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(75),
                         ),
-                        child: Image.asset(
-                          "assets/images/fodos.png",
-                          fit: BoxFit.cover,
-                        ),
+                        child: Image.asset(AppImages.logo, fit: BoxFit.cover),
                       ),
                     ],
                   ),
@@ -105,7 +105,7 @@ class _PendaftaranTugas12State extends State<PendaftaranTugas12> {
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
                   ),
                   SizedBox(height: 20),
-                  judulTextfield("Nama Pengguna"),
+                  judulTextfield("Nama Lengkap"),
                   SizedBox(height: 5),
                   textInputan(
                     "Masukkan Nama Anda",
@@ -215,7 +215,9 @@ class _PendaftaranTugas12State extends State<PendaftaranTugas12> {
                     width: 400,
                     child: ElevatedButton(
                       style: ButtonStyle(
-                        backgroundColor: WidgetStatePropertyAll(Colors.green),
+                        backgroundColor: WidgetStatePropertyAll(
+                          AppColors.secondary,
+                        ),
                       ),
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
@@ -241,12 +243,12 @@ class _PendaftaranTugas12State extends State<PendaftaranTugas12> {
                       TextButton(
                         onPressed: () {
                           setState(() {
-                            context.pop(HalamanLoginTugas12());
+                            context.pop(HalamanLoginFodos());
                           });
                         },
                         child: Text(
                           "Masuk",
-                          style: TextStyle(color: Colors.green),
+                          style: TextStyle(color: AppColors.secondary),
                         ),
                       ),
                     ],
