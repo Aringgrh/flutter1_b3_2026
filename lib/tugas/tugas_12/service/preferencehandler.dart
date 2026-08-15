@@ -7,19 +7,27 @@ class PreferenceHandler {
   }
 
   static const _keyIsLogin = "isLogin";
+  static const _keyUserEmail = "userEmail";
+  static const _keyUserProfileImage = "userProfileImage";
 
   static Future<void> setLogin(bool isLogin) async {
     await _prefs.setBool(_keyIsLogin, isLogin);
   }
 
   static Future<void> setUserEmail(String email) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString(_keyIsLogin, email);
+    await _prefs.setString(_keyUserEmail, email);
   }
 
-  static Future<String?> getUserEmail() async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.getString(_keyIsLogin);
+  static String? getUserEmail() {
+    return _prefs.getString(_keyUserEmail);
+  }
+
+  static Future<void> setUserProfileImage(String path) async {
+    await _prefs.setString(_keyUserProfileImage, path);
+  }
+
+  static String? getUserProfileImage() {
+    return _prefs.getString(_keyUserProfileImage);
   }
 
   static bool get isLogin {
@@ -28,5 +36,7 @@ class PreferenceHandler {
 
   static Future<void> logOut() async {
     await _prefs.remove(_keyIsLogin);
+    await _prefs.remove(_keyUserEmail);
+    await _prefs.remove(_keyUserProfileImage);
   }
 }

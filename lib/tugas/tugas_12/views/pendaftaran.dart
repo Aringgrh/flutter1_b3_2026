@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter1_b3_2026/extention/extention.dart';
 import 'package:flutter1_b3_2026/tugas/tugas_12/database/db_helper.dart';
 import 'package:flutter1_b3_2026/tugas/tugas_12/model/login_user_model.dart';
-import 'package:flutter1_b3_2026/tugas/tugas_12/views/login.dart';
+import 'package:flutter1_b3_2026/tugas/tugas_12/views/login/login.dart';
 import 'package:flutter1_b3_2026/tugas/tugas_12/views/widget_method.dart';
 
 class PendaftaranTugas12 extends StatefulWidget {
