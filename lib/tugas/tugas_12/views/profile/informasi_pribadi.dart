@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter1_b3_2026/tugas/tugas_12/constants/app_textstyle.dart';
+import 'package:flutter1_b3_2026/tugas/tugas_12/views/profile/widget_informasi_pribadi.dart';
+import 'package:flutter1_b3_2026/service/preference_handler.dart';
+import 'package:flutter1_b3_2026/tugas/tugas_12/database/db_helper.dart';
+import 'package:flutter1_b3_2026/tugas/tugas_12/model/login_user_model.dart';
 
 import 'package:flutter1_b3_2026/tugas/tugas_12/constants/app_textstyle.dart';
 import 'package:flutter1_b3_2026/tugas/tugas_12/database/db_helper.dart';
@@ -19,10 +24,20 @@ class _InformasiPribadiState extends State<InformasiPribadi> {
   final TextEditingController nomorC = TextEditingController();
   final TextEditingController domisiliC = TextEditingController();
 
+<<<<<<< HEAD
+=======
+  // File? _imageFile;
+  // String? _imagePath;
+>>>>>>> 094f051565af982a8ebf127649c9106c19de6c0a
   UserModelLoginSQL? currentUser;
   bool isLoading = true;
   bool isSaving = false;
 
+<<<<<<< HEAD
+=======
+  // final ImagePicker _picker = ImagePicker();
+
+>>>>>>> 094f051565af982a8ebf127649c9106c19de6c0a
   @override
   void initState() {
     super.initState();
@@ -39,6 +54,7 @@ class _InformasiPribadiState extends State<InformasiPribadi> {
   }
 
   Future<void> _loadUserData() async {
+<<<<<<< HEAD
     setState(() {
       isLoading = true;
     });
@@ -63,6 +79,140 @@ class _InformasiPribadiState extends State<InformasiPribadi> {
         });
       }
     }
+=======
+    // Read saved profile image path if available
+    // final savedImagePath = PreferenceHandler.getUserProfileImage();
+    // if (savedImagePath != null && savedImagePath.isNotEmpty) {
+    //   final file = File(savedImagePath);
+    //   if (file.existsSync()) {
+    //     _imageFile = file;
+    //     _imagePath = savedImagePath;
+    //   }
+    // }
+
+    // Get logged in email
+    final email = PreferenceHandler.getUserEmail();
+    if (email != null && email.isNotEmpty) {
+      final user = await DBHelper().getUserByEmail(email);
+      if (user != null) {
+        currentUser = user;
+        namaC.text = user.nama;
+        emailC.text = user.email;
+        nomorC.text = user.nomorhp;
+        domisiliC.text = user.alamat;
+      }
+    }
+
+    // Fallback: If no logged in user data found, load first user from DB or default info
+    //   if (currentUser == null) {
+    //     final allUsers = await DBHelper().getAllUsers();
+    //     if (allUsers.isNotEmpty) {
+    //       final user = allUsers.last;
+    //       currentUser = user;
+    //       namaC.text = user.nama;
+    //       emailC.text = user.email;
+    //       nomorC.text = user.nomorhp;
+    //       domisiliC.text = user.alamat;
+    //     } else {
+    //       namaC.text = "Dina";
+    //       emailC.text = "dina@example.com";
+    //       nomorC.text = "+62 812-3456-7890";
+    //       domisiliC.text = "Jakarta, Indonesia";
+    //     }
+    //   }
+
+    //   if (mounted) {
+    //     setState(() {
+    //       isLoading = false;
+    //     });
+    //   }
+    // }
+
+    // Future<void> _pickImage(ImageSource source) async {
+    //   try {
+    //     final XFile? pickedFile = await _picker.pickImage(
+    //       source: source,
+    //       maxWidth: 800,
+    //       maxHeight: 800,
+    //       imageQuality: 85,
+    //     );
+
+    //     if (pickedFile != null) {
+    //       setState(() {
+    //         _imageFile = File(pickedFile.path);
+    //         _imagePath = pickedFile.path;
+    //       });
+    //       await PreferenceHandler.setUserProfileImage(pickedFile.path);
+    //     }
+    //   } catch (e) {
+    //     if (mounted) {
+    //       ScaffoldMessenger.of(
+    //         context,
+    //       ).showSnackBar(SnackBar(content: Text('Gagal memilih gambar: $e')));
+    //     }
+    //   }
+    // }
+
+    // void _showImageSourceDialog() {
+    //   showModalBottomSheet(
+    //     context: context,
+    //     shape: const RoundedRectangleBorder(
+    //       borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+    //     ),
+    //     builder: (context) {
+    //       return SafeArea(
+    //         child: Padding(
+    //           padding: const EdgeInsets.symmetric(vertical: 16),
+    //           child: Wrap(
+    //             children: [
+    //               ListTile(
+    //                 leading: const Icon(
+    //                   Icons.photo_camera,
+    //                   color: Color(0xFF006D40),
+    //                 ),
+    //                 title: const Text('Ambil Foto Kamera'),
+    //                 onTap: () {
+    //                   Navigator.pop(context);
+    //                   _pickImage(ImageSource.camera);
+    //                 },
+    //               ),
+    //               ListTile(
+    //                 leading: const Icon(
+    //                   Icons.photo_library,
+    //                   color: Color(0xFF006D40),
+    //                 ),
+    //                 title: const Text('Pilih dari Galeri'),
+    //                 onTap: () {
+    //                   Navigator.pop(context);
+    //                   _pickImage(ImageSource.gallery);
+    //                 },
+    //               ),
+    //               if (_imageFile != null)
+    //                 ListTile(
+    //                   leading: const Icon(
+    //                     Icons.delete_outline,
+    //                     color: Colors.red,
+    //                   ),
+    //                   title: const Text(
+    //                     'Hapus Foto Profil',
+    //                     style: TextStyle(color: Colors.red),
+    //                   ),
+    //                   onTap: () async {
+    //                     Navigator.pop(context);
+    //                     setState(() {
+    //                       _imageFile = null;
+    //                       _imagePath = null;
+    //                     });
+    //                     await PreferenceHandler.setUserProfileImage('');
+    //                   },
+    //                 ),
+    //             ],
+    //           ),
+    //         ),
+    //       );
+    //     },
+    //   );
+>>>>>>> 094f051565af982a8ebf127649c9106c19de6c0a
   }
 
   Future<void> _saveChanges() async {
@@ -83,6 +233,7 @@ class _InformasiPribadiState extends State<InformasiPribadi> {
         email: newEmail,
         password: currentUser!.password,
         alamat: newDomisili,
+<<<<<<< HEAD
         gambar: currentUser!.gambar,
       );
 
@@ -93,6 +244,19 @@ class _InformasiPribadiState extends State<InformasiPribadi> {
       }
     }
 
+=======
+      );
+
+      await DBHelper().updateUser(updatedUser);
+      currentUser = updatedUser;
+    }
+
+    // await PreferenceHandler.setUserEmail(newEmail);
+    // if (_imagePath != null) {
+    //   await PreferenceHandler.setUserProfileImage(_imagePath!);
+    // }
+
+>>>>>>> 094f051565af982a8ebf127649c9106c19de6c0a
     await Future.delayed(const Duration(milliseconds: 200));
 
     if (mounted) {
@@ -161,7 +325,55 @@ class _InformasiPribadiState extends State<InformasiPribadi> {
                                   ),
                                 ],
                               ),
+<<<<<<< HEAD
                             ),
+=======
+                              // child: _imageFile != null
+                              //     ? ClipRRect(
+                              //         borderRadius: BorderRadius.circular(60),
+                              //         child: Image.file(
+                              //           _imageFile!,
+                              //           width: 120,
+                              //           height: 120,
+                              //           fit: BoxFit.cover,
+                              //         ),
+                              //       )
+                              //     : const Icon(
+                              //         Icons.person,
+                              //         size: 70,
+                              //         color: primaryColor,
+                              //       ),
+                            ),
+                            // Positioned(
+                            //   bottom: 2,
+                            //   right: 2,
+                            //   child: InkWell(
+                            //     onTap: _showImageSourceDialog,
+                            //     borderRadius: BorderRadius.circular(20),
+                            //     child: Container(
+                            //       padding: const EdgeInsets.all(8),
+                            //       decoration: BoxDecoration(
+                            //         color: secondaryColor,
+                            //         shape: BoxShape.circle,
+                            //         boxShadow: [
+                            //           BoxShadow(
+                            //             color: Colors.black.withValues(
+                            //               alpha: 0.15,
+                            //             ),
+                            //             blurRadius: 6,
+                            //             offset: const Offset(0, 2),
+                            //           ),
+                            //         ],
+                            //       ),
+                            //       child: const Icon(
+                            //         Icons.photo_camera,
+                            //         color: Colors.white,
+                            //         size: 18,
+                            //       ),
+                            //     ),
+                            //   ),
+                            // ),
+>>>>>>> 094f051565af982a8ebf127649c9106c19de6c0a
                           ],
                         ),
                         const SizedBox(height: 14),

@@ -4,7 +4,11 @@ import 'package:flutter1_b3_2026/tugas/tugas_12/constants/App_images.dart';
 import 'package:flutter1_b3_2026/tugas/tugas_12/constants/app_textstyle.dart';
 import 'package:flutter1_b3_2026/tugas/tugas_12/database/db_helper.dart';
 import 'package:flutter1_b3_2026/tugas/tugas_12/model/login_user_model.dart';
+<<<<<<< HEAD:lib/tugas/tugas_12/views/login/halaman_pendaftaran.dart
 import 'package:flutter1_b3_2026/tugas/tugas_12/views/login/halaman_login.dart';
+=======
+import 'package:flutter1_b3_2026/tugas/tugas_12/views/login/login.dart';
+>>>>>>> 094f051565af982a8ebf127649c9106c19de6c0a:lib/tugas/tugas_12/views/pendaftaran.dart
 import 'package:flutter1_b3_2026/tugas/tugas_12/views/widget_method.dart';
 
 class HalamanPendaftaranFodos extends StatefulWidget {

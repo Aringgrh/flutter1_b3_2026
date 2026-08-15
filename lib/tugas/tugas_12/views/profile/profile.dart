@@ -3,7 +3,11 @@ import 'package:flutter1_b3_2026/extention/extention.dart';
 import 'package:flutter1_b3_2026/service/preference_handler.dart';
 import 'package:flutter1_b3_2026/tugas/tugas_12/constants/App_images.dart';
 import 'package:flutter1_b3_2026/tugas/tugas_12/constants/app_textstyle.dart';
+<<<<<<< HEAD
 import 'package:flutter1_b3_2026/tugas/tugas_12/views/login/halaman_login.dart';
+=======
+import 'package:flutter1_b3_2026/tugas/tugas_12/views/login/login.dart';
+>>>>>>> 094f051565af982a8ebf127649c9106c19de6c0a
 import 'package:flutter1_b3_2026/tugas/tugas_12/views/profile/informasi_pribadi.dart';
 import 'package:flutter1_b3_2026/tugas/tugas_12/views/profile/profil_alamat.dart';
 import 'package:flutter1_b3_2026/tugas/tugas_12/views/profile/profil_keamanan.dart';
@@ -75,6 +79,7 @@ class _ProfileTugas12State extends State<ProfileTugas12> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+<<<<<<< HEAD
                 Stack(
                   children: [
                     Container(
@@ -125,6 +130,32 @@ class _ProfileTugas12State extends State<ProfileTugas12> {
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
                 color: AppColors.textDark,
+=======
+                Container(
+                  height: 100,
+                  width: 100,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                    color: Colors.black,
+                    image: DecorationImage(
+                      image: AssetImage(AppImages.logo),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 10),
+
+            SizedBox(height: 50),
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text("Pengaturan Akun", style: AppTextstyle.heading2),
+                ],
+>>>>>>> 094f051565af982a8ebf127649c9106c19de6c0a
               ),
             ),
 
@@ -147,6 +178,7 @@ class _ProfileTugas12State extends State<ProfileTugas12> {
             ),
             const SizedBox(height: 8),
 
+<<<<<<< HEAD
             // Card Menu
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 20),
@@ -159,6 +191,56 @@ class _ProfileTugas12State extends State<ProfileTugas12> {
                     color: Colors.black.withValues(alpha: 0.04),
                     blurRadius: 10,
                     offset: const Offset(0, 4),
+=======
+                  menuProfil(
+                    onPressed: () {
+                      setState(() {
+                        print("Berhasil Dipencet");
+                        context.push(InformasiPribadi());
+                      });
+                    },
+                    leading: Icon(Icons.location_on_outlined, size: 24),
+                    title: Text("Alamat Tersimpan"),
+                    subtitle: Text("Rumah, Kantor, Apartemen"),
+                    trailing: Icon(Icons.keyboard_arrow_right_outlined),
+                  ),
+                  Divider(),
+
+                  menuProfil(
+                    onPressed: () {
+                      context.push(ProfilKeamanan());
+                    },
+                    leading: Icon(Icons.shield_outlined, size: 24),
+                    title: Text("Keamana & Password"),
+                    subtitle: Text("Ubah detail profil dan kontak"),
+                    trailing: Icon(Icons.keyboard_arrow_right_outlined),
+                  ),
+                  Divider(),
+                  menuProfil(
+                    onPressed: () {
+                      context.push(ProfilTentangAplikasi());
+                    },
+                    leading: Icon(Icons.error_outline_outlined, size: 24),
+                    title: Text("Tentang Aplikasi"),
+                    subtitle: Text("Versi aplikasi, syarat & ketentuan"),
+                    trailing: Icon(Icons.keyboard_arrow_right_outlined),
+                  ),
+                  Divider(),
+                  menuProfil(
+                    onPressed: () {
+                      context.push(HalamanLoginTugas12());
+                    },
+                    leading: Icon(
+                      Icons.logout_outlined,
+                      size: 24,
+                      color: Colors.red,
+                    ),
+                    title: Text("Keluar", style: TextStyle(color: Colors.red)),
+                    subtitle: Text(
+                      "Keluar dari sesi saat ini",
+                      style: TextStyle(color: Colors.red),
+                    ),
+>>>>>>> 094f051565af982a8ebf127649c9106c19de6c0a
                   ),
                 ],
               ),
@@ -309,6 +391,7 @@ class _ProfileTugas12State extends State<ProfileTugas12> {
   }) {
     return InkWell(
       onTap: onPressed,
+<<<<<<< HEAD
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         child: Row(
@@ -353,6 +436,13 @@ class _ProfileTugas12State extends State<ProfileTugas12> {
             trailing ?? const SizedBox.shrink(),
           ],
         ),
+=======
+      child: ListTile(
+        leading: leading,
+        title: title,
+        subtitle: subtitle,
+        trailing: trailing,
+>>>>>>> 094f051565af982a8ebf127649c9106c19de6c0a
       ),
     );
   }
