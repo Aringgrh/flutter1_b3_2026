@@ -3,7 +3,7 @@ import 'package:flutter1_b3_2026/extention/extention.dart';
 import 'package:flutter1_b3_2026/service/preference_handler.dart';
 import 'package:flutter1_b3_2026/tugas/tugas_12/constants/App_images.dart';
 import 'package:flutter1_b3_2026/tugas/tugas_12/views/bottom_nav.dart';
-import 'package:flutter1_b3_2026/tugas/tugas_12/views/login.dart';
+import 'package:flutter1_b3_2026/tugas/tugas_12/views/login/login.dart';
 import 'package:lottie/lottie.dart';
 
 class SplashScreenTugas12 extends StatefulWidget {
