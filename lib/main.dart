@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-// import 'package:flutter1_b3_2026/day_18/views/login_day_18.dart';
 import 'package:flutter1_b3_2026/service/preference_handler.dart';
 import 'package:flutter1_b3_2026/tugas/tugas_12/views/login/login.dart';
+import 'package:flutter1_b3_2026/tugas/tugas_12/views/splash_screen.dart';
+import 'package:flutter1_b3_2026/tugas/tugas_15/views/post_list_tugas.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await initializeDateFormatting("id_ID", null);
   await PreferenceHandler.init();
   runApp(const MyApp());
@@ -23,14 +21,15 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.white)),
+      theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: Colors.white)),
       // PUSH NAMED
       initialRoute: "/",
       routes: {
-        "/": (context) => HalamanLoginTugas12(),
+        "/": (context) => const Tugas15PostList(),
         // "/home": (context) => DrawerDay13(),
       },
       // home: HalamanLogin(),
     );
   }
 }
+

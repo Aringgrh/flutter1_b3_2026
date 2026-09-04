@@ -5,6 +5,12 @@ import 'package:flutter1_b3_2026/service/preference_handler.dart';
 import 'package:flutter1_b3_2026/tugas/tugas_12/database/db_helper.dart';
 import 'package:flutter1_b3_2026/tugas/tugas_12/model/login_user_model.dart';
 
+import 'package:flutter1_b3_2026/tugas/tugas_12/constants/app_textstyle.dart';
+import 'package:flutter1_b3_2026/tugas/tugas_12/database/db_helper.dart';
+import 'package:flutter1_b3_2026/tugas/tugas_12/model/login_user_model.dart';
+import 'package:flutter1_b3_2026/tugas/tugas_12/views/profile/widget_profile.dart';
+import 'package:flutter1_b3_2026/tugas/tugas_12/service/preferencehandler.dart';
+
 class InformasiPribadi extends StatefulWidget {
   const InformasiPribadi({super.key});
 
@@ -18,14 +24,20 @@ class _InformasiPribadiState extends State<InformasiPribadi> {
   final TextEditingController nomorC = TextEditingController();
   final TextEditingController domisiliC = TextEditingController();
 
+<<<<<<< HEAD
+=======
   // File? _imageFile;
   // String? _imagePath;
+>>>>>>> 094f051565af982a8ebf127649c9106c19de6c0a
   UserModelLoginSQL? currentUser;
   bool isLoading = true;
   bool isSaving = false;
 
+<<<<<<< HEAD
+=======
   // final ImagePicker _picker = ImagePicker();
 
+>>>>>>> 094f051565af982a8ebf127649c9106c19de6c0a
   @override
   void initState() {
     super.initState();
@@ -42,6 +54,32 @@ class _InformasiPribadiState extends State<InformasiPribadi> {
   }
 
   Future<void> _loadUserData() async {
+<<<<<<< HEAD
+    setState(() {
+      isLoading = true;
+    });
+    try {
+      final email = await PreferenceHandler.getUserEmail();
+      if (email != null && email.isNotEmpty) {
+        final user = await DBHelper().getUserByEmail(email);
+        if (user != null) {
+          currentUser = user;
+          namaC.text = user.nama;
+          emailC.text = user.email;
+          nomorC.text = user.nomorhp;
+          domisiliC.text = user.alamat;
+        }
+      }
+    } catch (e) {
+      debugPrint("Error loading user data: $e");
+    } finally {
+      if (mounted) {
+        setState(() {
+          isLoading = false;
+        });
+      }
+    }
+=======
     // Read saved profile image path if available
     // final savedImagePath = PreferenceHandler.getUserProfileImage();
     // if (savedImagePath != null && savedImagePath.isNotEmpty) {
@@ -174,6 +212,7 @@ class _InformasiPribadiState extends State<InformasiPribadi> {
     //       );
     //     },
     //   );
+>>>>>>> 094f051565af982a8ebf127649c9106c19de6c0a
   }
 
   Future<void> _saveChanges() async {
@@ -194,6 +233,18 @@ class _InformasiPribadiState extends State<InformasiPribadi> {
         email: newEmail,
         password: currentUser!.password,
         alamat: newDomisili,
+<<<<<<< HEAD
+        gambar: currentUser!.gambar,
+      );
+
+      final success = await DBHelper().updateUser(updatedUser);
+      if (success) {
+        await PreferenceHandler.setUserEmail(newEmail);
+        currentUser = updatedUser;
+      }
+    }
+
+=======
       );
 
       await DBHelper().updateUser(updatedUser);
@@ -205,6 +256,7 @@ class _InformasiPribadiState extends State<InformasiPribadi> {
     //   await PreferenceHandler.setUserProfileImage(_imagePath!);
     // }
 
+>>>>>>> 094f051565af982a8ebf127649c9106c19de6c0a
     await Future.delayed(const Duration(milliseconds: 200));
 
     if (mounted) {
@@ -273,6 +325,9 @@ class _InformasiPribadiState extends State<InformasiPribadi> {
                                   ),
                                 ],
                               ),
+<<<<<<< HEAD
+                            ),
+=======
                               // child: _imageFile != null
                               //     ? ClipRRect(
                               //         borderRadius: BorderRadius.circular(60),
@@ -318,6 +373,7 @@ class _InformasiPribadiState extends State<InformasiPribadi> {
                             //     ),
                             //   ),
                             // ),
+>>>>>>> 094f051565af982a8ebf127649c9106c19de6c0a
                           ],
                         ),
                         const SizedBox(height: 14),

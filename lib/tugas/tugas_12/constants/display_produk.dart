@@ -7,9 +7,7 @@ Widget displayProduk({
   required String namaToko,
   required String sisaPorsi,
   required String pickUp,
-  String distance = "0.8 km",
   String harga = "Rp 15.000",
-  String? hargaAsli = "Rp 45.000",
   VoidCallback? onTap,
 }) {
   return Container(
@@ -46,37 +44,6 @@ Widget displayProduk({
                   child: Image.asset(
                     image,
                     fit: BoxFit.cover,
-                  ),
-                ),
-                Positioned(
-                  top: 12,
-                  left: 12,
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 10, vertical: 4),
-                    decoration: BoxDecoration(
-                      color: AppColors.primary.withValues(alpha: 0.9),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const Icon(
-                          Icons.near_me,
-                          color: Colors.white,
-                          size: 12,
-                        ),
-                        const SizedBox(width: 4),
-                        Text(
-                          distance,
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 10,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
                   ),
                 ),
               ],
@@ -136,13 +103,6 @@ Widget displayProduk({
                         harga,
                         style: AppTextstyle.harga,
                       ),
-                      if (hargaAsli != null) ...[
-                        const SizedBox(width: 8),
-                        Text(
-                          hargaAsli,
-                          style: AppTextstyle.hargaCoret,
-                        ),
-                      ],
                     ],
                   ),
                   const SizedBox(height: 10),

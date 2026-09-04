@@ -9,6 +9,7 @@ class UserModelLoginSQL {
   final String email;
   final String password;
   final String alamat;
+  final String? gambar;
 
   UserModelLoginSQL({
     this.id,
@@ -17,6 +18,7 @@ class UserModelLoginSQL {
     required this.email,
     required this.password,
     required this.alamat,
+    this.gambar,
   });
 
   Map<String, dynamic> toMap() {
@@ -27,6 +29,7 @@ class UserModelLoginSQL {
       'email': email,
       'password': password,
       'alamat': alamat,
+      'gambar': gambar,
     };
   }
 
@@ -38,6 +41,7 @@ class UserModelLoginSQL {
       email: (map['email'] ?? '') as String,
       password: (map['password'] ?? '') as String,
       alamat: (map['alamat'] ?? '') as String,
+      gambar: map['gambar'] as String?,
     );
   }
 
