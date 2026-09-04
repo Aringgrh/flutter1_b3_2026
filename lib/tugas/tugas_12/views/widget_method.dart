@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter1_b3_2026/tugas/tugas_11/login_tugas_11.dart';
 
 bool hide = true;
 TextFormField passField({
@@ -52,7 +51,7 @@ Row judulTextfield(String judul) {
         hintText: hint,
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
       ),
-      controller: kontroller ?? emailC,
+      // controller: kontroller ?? emailC,
       validator:
           validator ??
           (value) {

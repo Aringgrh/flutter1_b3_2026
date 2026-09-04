@@ -5,7 +5,7 @@ import 'package:flutter1_b3_2026/tugas/tugas_12/constants/App_images.dart';
 import 'package:flutter1_b3_2026/tugas/tugas_12/constants/app_textstyle.dart';
 import 'package:flutter1_b3_2026/tugas/tugas_12/database/db_helper.dart';
 import 'package:flutter1_b3_2026/tugas/tugas_12/views/bottom_nav.dart';
-import 'package:flutter1_b3_2026/tugas/tugas_12/views/pendaftaran.dart';
+import 'package:flutter1_b3_2026/tugas/tugas_12/views/login/halaman_pendaftaran.dart';
 
 class HalamanLoginTugas12 extends StatefulWidget {
   const HalamanLoginTugas12({super.key});
@@ -361,7 +361,7 @@ class _HalamanLoginTugas12State extends State<HalamanLoginTugas12> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          context.push(const PendaftaranTugas12());
+                          context.push(const HalamanPendaftaranFodos());
                         },
                         child: Text(
                           "Daftar Sekarang",
