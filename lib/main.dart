@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter1_b3_2026/service/preference_handler.dart';
-import 'package:flutter1_b3_2026/tugas/tugas_12/views/login/login.dart';
-import 'package:flutter1_b3_2026/tugas/tugas_12/views/splash_screen.dart';
-import 'package:flutter1_b3_2026/tugas/tugas_15/views/post_list_tugas.dart';
+import 'package:flutter1_b3_2026/tugas/tugas_16/view/splash_screen.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 void main() async {
@@ -21,15 +19,16 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: Colors.white)),
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
+      ),
       // PUSH NAMED
       initialRoute: "/",
       routes: {
-        "/": (context) => const Tugas15PostList(),
+        "/": (context) => const SplashScreen(),
         // "/home": (context) => DrawerDay13(),
       },
       // home: HalamanLogin(),
     );
   }
 }
-
