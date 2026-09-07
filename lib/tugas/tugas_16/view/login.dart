@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutter1_b3_2026/service/preference_handler.dart';
 import '../models/login_request.dart';
 import '../services/api_services.dart';
 import '../services/dio_client.dart';
@@ -134,11 +133,23 @@ class _LoginPageState extends State<LoginPage> {
       }
 
       final token = response.data?.token;
+      final user = response.data?.user;
 
       if (token != null && token.isNotEmpty) {
         await prefs.setString('auth_token', token);
-        await PreferenceHandler.setLogin(true);
-        await PreferenceHandler.setUserEmail(targetEmail);
+        await prefs.setBool('isLogin', true);
+
+        final loginInputEmail = inputEmail;
+        final loggedInName = user?.name ?? '';
+
+        await prefs.setString('user_login_email', loginInputEmail);
+        await prefs.setString('userEmail', loginInputEmail);
+        await prefs.setString('user_email', loginInputEmail);
+        if (loggedInName.isNotEmpty) {
+          await prefs.setString('user_name', loggedInName);
+        }
+        await prefs.remove('user_custom_email');
+
         final origKey = 'user_original_password_${targetEmail.toLowerCase()}';
         if (!prefs.containsKey(origKey)) {
           await prefs.setString(origKey, targetPassword);

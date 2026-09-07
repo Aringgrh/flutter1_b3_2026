@@ -3,7 +3,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutter1_b3_2026/service/preference_handler.dart';
 import '../models/user_model.dart';
 import '../services/api_services.dart';
 import '../services/dio_client.dart';
@@ -28,7 +27,38 @@ class _ProfilePageState extends State<ProfilePage> {
   void initState() {
     super.initState();
     _apiService = ApiService(buatDioClient());
+    _loadCachedProfile();
     _fetchProfile();
+  }
+
+  Future<void> _loadCachedProfile() async {
+    final prefs = await SharedPreferences.getInstance();
+    final loginEmail = prefs.getString('user_login_email');
+    final customEmail = prefs.getString('user_custom_email');
+    final cachedEmail = (loginEmail != null && loginEmail.trim().isNotEmpty)
+        ? loginEmail
+        : ((customEmail != null && customEmail.trim().isNotEmpty)
+            ? customEmail
+            : (prefs.getString('user_email') ?? prefs.getString('userEmail')));
+    final cachedName = prefs.getString('user_name');
+
+    if ((cachedEmail != null && cachedEmail.isNotEmpty) ||
+        (cachedName != null && cachedName.isNotEmpty)) {
+      if (mounted) {
+        setState(() {
+          _userProfile = UserModel(
+            id: _userProfile?.id,
+            name: cachedName ?? _userProfile?.name,
+            email: cachedEmail ?? _userProfile?.email,
+            emailVerifiedAt: _userProfile?.emailVerifiedAt,
+            profilePhoto: _userProfile?.profilePhoto,
+            createdAt: _userProfile?.createdAt,
+            updatedAt: _userProfile?.updatedAt,
+          );
+          _isLoading = false;
+        });
+      }
+    }
   }
 
   Future<String?> _getTokenHeader() async {
@@ -68,7 +98,7 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   Future<void> _fetchProfile({bool showLoading = true}) async {
-    if (showLoading) {
+    if (showLoading && _userProfile == null) {
       setState(() {
         _isLoading = true;
         _errorMessage = null;
@@ -79,23 +109,35 @@ class _ProfilePageState extends State<ProfilePage> {
       final tokenHeader = await _getTokenHeader();
       final response = await _apiService.getProfile(token: tokenHeader);
       final prefs = await SharedPreferences.getInstance();
+      final loginEmail = prefs.getString('user_login_email');
       final customEmail = prefs.getString('user_custom_email');
+      final cachedEmail =
+          prefs.getString('user_email') ?? prefs.getString('userEmail');
+      final cachedName = prefs.getString('user_name');
 
       if (mounted) {
-        setState(() {
-          if (response.data != null) {
-            final serverUser = response.data!;
+        if (response.data != null) {
+          final serverUser = response.data!;
+
+          final String? finalName =
+              (serverUser.name != null && serverUser.name!.trim().isNotEmpty)
+                  ? serverUser.name
+                  : (cachedName ?? _userProfile?.name);
+
+          final String? finalEmail =
+              (loginEmail != null && loginEmail.trim().isNotEmpty)
+                  ? loginEmail
+                  : ((customEmail != null && customEmail.trim().isNotEmpty)
+                      ? customEmail
+                      : ((serverUser.email != null && serverUser.email!.trim().isNotEmpty)
+                          ? serverUser.email
+                          : (cachedEmail ?? _userProfile?.email)));
+
+          setState(() {
             _userProfile = UserModel(
               id: serverUser.id ?? _userProfile?.id,
-              name: (serverUser.name != null && serverUser.name!.isNotEmpty)
-                  ? serverUser.name
-                  : _userProfile?.name,
-              email:
-                  customEmail ??
-                  _userProfile?.email ??
-                  ((serverUser.email != null && serverUser.email!.isNotEmpty)
-                      ? serverUser.email
-                      : null),
+              name: finalName,
+              email: finalEmail,
               emailVerifiedAt:
                   serverUser.emailVerifiedAt ?? _userProfile?.emailVerifiedAt,
               profilePhoto:
@@ -103,17 +145,34 @@ class _ProfilePageState extends State<ProfilePage> {
               createdAt: serverUser.createdAt ?? _userProfile?.createdAt,
               updatedAt: serverUser.updatedAt ?? _userProfile?.updatedAt,
             );
+            _isLoading = false;
+            _errorMessage = null;
+          });
+
+          if (finalName != null && finalName.isNotEmpty) {
+            await prefs.setString('user_name', finalName);
           }
-        });
+          if (finalEmail != null && finalEmail.isNotEmpty) {
+            await prefs.setString('user_email', finalEmail);
+            await prefs.setString('userEmail', finalEmail);
+          }
+        }
       }
     } catch (e) {
-      if (mounted && showLoading) {
-        setState(() {
-          _errorMessage = _parseDioError(e, "Gagal memuat profil");
-        });
+      if (mounted) {
+        if (_userProfile != null) {
+          setState(() {
+            _isLoading = false;
+          });
+        } else if (showLoading) {
+          setState(() {
+            _errorMessage = _parseDioError(e, "Gagal memuat profil");
+            _isLoading = false;
+          });
+        }
       }
     } finally {
-      if (mounted && showLoading) {
+      if (mounted && _isLoading && showLoading) {
         setState(() {
           _isLoading = false;
         });
@@ -265,10 +324,16 @@ class _ProfilePageState extends State<ProfilePage> {
                                   originalEmail,
                                 );
                               }
+                              await prefs.setString('user_login_email', emailText);
                               await prefs.setString(
                                 'user_custom_email',
                                 emailText,
                               );
+                              await prefs.setString('user_email', emailText);
+                              await prefs.setString('userEmail', emailText);
+                              if (nameText.isNotEmpty) {
+                                await prefs.setString('user_name', nameText);
+                              }
 
                               final updatedUser = UserModel(
                                 id: res.data?.id ?? _userProfile?.id,
@@ -805,7 +870,13 @@ class _ProfilePageState extends State<ProfilePage> {
   Future<void> _handleLogout() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove('auth_token');
-    await PreferenceHandler.logOut();
+    await prefs.remove('isLogin');
+    await prefs.remove('user_login_email');
+    await prefs.remove('userEmail');
+    await prefs.remove('user_email');
+    await prefs.remove('user_name');
+    await prefs.remove('user_custom_email');
+    await prefs.remove('userProfileImage');
 
     if (mounted) {
       Navigator.pushAndRemoveUntil(

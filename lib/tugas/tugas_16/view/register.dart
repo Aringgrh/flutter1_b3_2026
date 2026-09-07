@@ -4,7 +4,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutter1_b3_2026/service/preference_handler.dart';
 import '../models/batch_model.dart';
 import '../models/register_request.dart';
 import '../models/training_model.dart';
@@ -213,12 +212,22 @@ class _RegisterPageState extends State<RegisterPage> {
         if (token != null && token.isNotEmpty) {
           final prefs = await SharedPreferences.getInstance();
           await prefs.setString('auth_token', token);
-          final regEmail = _emailController.text.trim().toLowerCase();
-          await PreferenceHandler.setLogin(true);
-          await PreferenceHandler.setUserEmail(regEmail);
-          await prefs.setString('user_registered_email', regEmail);
+          final regEmail = _emailController.text.trim();
+          final regName = _nameController.text.trim();
+          final regEmailLower = regEmail.toLowerCase();
+
+          await prefs.setBool('isLogin', true);
+          await prefs.setString('user_login_email', regEmail);
+          await prefs.setString('userEmail', regEmail);
+          await prefs.setString('user_email', regEmail);
+          if (regName.isNotEmpty) {
+            await prefs.setString('user_name', regName);
+          }
+          await prefs.remove('user_custom_email');
+
+          await prefs.setString('user_registered_email', regEmailLower);
           await prefs.setString(
-            'user_original_password_$regEmail',
+            'user_original_password_$regEmailLower',
             _passwordController.text,
           );
 
